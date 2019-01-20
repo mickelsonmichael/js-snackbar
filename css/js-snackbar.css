@@ -3,7 +3,7 @@
     bottom: 0;
     right: 0;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: flex-end;
     max-width: 100%;
     padding: 10px;
