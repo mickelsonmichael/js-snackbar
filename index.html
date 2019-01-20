@@ -1,0 +1,43 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="DEMO">
+  <meta name="author" content="Michael Mickelson">
+
+  <link rel="stylesheet" href="css/tsmi-snackbar.css?v=2.0.0">
+
+  <style>
+      body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+  </style>
+
+</head>
+
+<body>
+    <h1>Snackbar Demo</h1>
+    <div>
+        <h2>Context Colors</h2>
+        <button type="button" onclick="snackbar.Default('Hello World!')">Default</button>
+        <button type="button" onclick="snackbar.Success('Success Message')">Success</button>
+        <button type="button" onclick="snackbar.Error('Could not open the snackbar!')">Error</button>
+        <button type="button" onclick="snackbar.Warning('You\'ve unleashed the snackbar!')">Warning</button>
+        <button type="button" onclick="snackbar.Info('Here is an info message (marked as not dismissable)')">Info</button>
+    </div>
+
+    <div>
+        <h2>Options</h2>
+        <button type="button" onclick="snackbar.Default('I hang out a little longer', 15000)">Timeout</button>
+        <button type="button" onclick="snackbar.Default('I can\'t be sent away by the user', 10000, false)">Undismissible</button>
+    </div>
+
+  <script src="js/tsmi-snackbar.js?v=2.0.0"></script>
+  <script>
+      var snackbar = new SnackBar();
+  </script>
+</body>
+</html>

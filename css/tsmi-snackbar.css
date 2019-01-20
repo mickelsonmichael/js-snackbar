@@ -1,0 +1,81 @@
+﻿.tsmi-snackbar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    box-sizing: border-box;
+    max-width: 100%;
+    border-radius: 3px;
+    color: #eee;
+    right: 20px;
+    margin: 20px;
+    font-size: 16px;
+    background-color: #262626;
+    transition: all ease .5s;
+    transform: translateY(150%);
+    opacity: 0;
+    box-shadow: 0 0 4px 0 black;
+    z-index: 1000;
+}
+
+.tsmi-snackbar--show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.tsmi-snackbar__close,
+.tsmi-snackbar__status,
+.tsmi-snackbar__message {
+    position: relative;
+}
+
+.tsmi-snackbar__message {
+    padding: 12px;
+}
+
+.tsmi-snackbar__status {
+    display: none;
+    width: 15px;
+    margin-right: 5px;
+    border-radius: 3px 0 0 3px;
+    background-color: transparent;
+}
+
+.tsmi-snackbar--success .tsmi-snackbar__status,
+.tsmi-snackbar--warning .tsmi-snackbar__status,
+.tsmi-snackbar--danger .tsmi-snackbar__status,
+.tsmi-snackbar--info .tsmi-snackbar__status {
+    display: block;
+}
+
+.tsmi-snackbar--success .tsmi-snackbar__status {
+    background-color: #4caf50;
+}
+
+.tsmi-snackbar--warning .tsmi-snackbar__status {
+    background-color: #ff9800;
+}
+
+.tsmi-snackbar--danger .tsmi-snackbar__status {
+    background-color: #b90909;
+}
+
+.tsmi-snackbar--info .tsmi-snackbar__status {
+    background-color: #2196f3;
+}
+
+.tsmi-snackbar__close {
+    display: none;
+}
+
+.tsmi-snackbar--dismissible .tsmi-snackbar__close {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    border-left: 1px solid transparent;
+}
+
+.tsmi-snackbar--dismissible .tsmi-snackbar__close:hover {
+    background-color: #444;
+    border-color: #666;
+}
