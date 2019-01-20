@@ -1,0 +1,134 @@
+﻿.js-snackbar-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    max-width: 100%;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.js-snackbar-container * {
+    box-sizing: border-box;
+}
+
+.js-snackbar {
+    display: inline-flex;
+    box-sizing: border-box;
+    border-radius: 3px;
+    color: #eee;
+    font-size: 16px;
+    background-color: #262626;
+    transition: all ease .5s;
+    box-shadow: 0 0 4px 0 black;
+    z-index: 1000;
+
+    animation: snackbar-hide 1s;
+
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(100%);
+    max-height: 0;
+}
+
+.js-snackbar--show {
+    animation: snackbar-show .5s;
+    opacity: 1;
+    height: auto;
+    transform: translateY(0);
+    max-height: none;
+    margin-top: 10px;
+}
+
+@keyframes snackbar-hide {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+        max-height: 500px;
+        margin-top: 10px;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(100%);
+        margin-top: 0;
+        max-height: 0;
+    }
+}
+
+@keyframes snackbar-show {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+        max-height: 0;
+        margin-top: 0;
+    }
+
+    100% {
+
+        max-height: 500px;
+        margin-top: 10px;
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.js-snackbar--hidden {
+    animation-name: hide-snackbar;
+    animation-duration: 1s;
+}
+
+.js-snackbar__close,
+.js-snackbar__status,
+.js-snackbar__message {
+    position: relative;
+}
+
+.js-snackbar__message {
+    padding: 12px;
+}
+
+.js-snackbar__status {
+    display: none;
+    width: 15px;
+    margin-right: 5px;
+    border-radius: 3px 0 0 3px;
+    background-color: transparent;
+}
+
+ .js-snackbar__status.js-snackbar--success,
+ .js-snackbar__status.js-snackbar--warning,
+ .js-snackbar__status.js-snackbar--danger,
+ .js-snackbar__status.js-snackbar--info {
+    display: block;
+}
+
+.js-snackbar__status.js-snackbar--success  {
+    background-color: #4caf50;
+}
+
+.js-snackbar__status.js-snackbar--warning  {
+    background-color: #ff9800;
+}
+
+ .js-snackbar__status.js-snackbar--danger {
+    background-color: #b90909;
+}
+
+ .js-snackbar__status.js-snackbar--info {
+    background-color: #2196f3;
+}
+
+.js-snackbar__close {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.js-snackbar__close:hover {
+    background-color: #444;
+}

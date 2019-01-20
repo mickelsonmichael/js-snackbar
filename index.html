@@ -1,18 +1,25 @@
 <!doctype html>
 
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
+    <meta charset="utf-8">
 
-  <title>The HTML5 Herald</title>
-  <meta name="description" content="DEMO">
-  <meta name="author" content="Michael Mickelson">
+    <title>The HTML5 Herald</title>
+    <meta name="description" content="DEMO">
+    <meta name="author" content="Michael Mickelson">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link rel="stylesheet" href="css/tsmi-snackbar.css?v=2.0.0">
+    <link rel="stylesheet" href="css/js-snackbar.css?v=1.0.0">
 
-  <style>
-      body {
+    <style>
+        body {
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .field {
+          display: inline-block;
+          margin-bottom: 3px;
       }
   </style>
 
@@ -22,22 +29,139 @@
     <h1>Snackbar Demo</h1>
     <div>
         <h2>Context Colors</h2>
-        <button type="button" onclick="snackbar.Default('Hello World!')">Default</button>
-        <button type="button" onclick="snackbar.Success('Success Message')">Success</button>
-        <button type="button" onclick="snackbar.Error('Could not open the snackbar!')">Error</button>
-        <button type="button" onclick="snackbar.Warning('You\'ve unleashed the snackbar!')">Warning</button>
-        <button type="button" onclick="snackbar.Info('Here is an info message (marked as not dismissable)')">Info</button>
+        <button type="button" onclick="def();">Default</button>
+        <button type="button" onclick="success();">Success</button>
+        <button type="button" onclick="demoError();">Error</button>
+        <button type="button" onclick="demoWarning();">Warning</button>
+        <button type="button" onclick="demoInfo();">Info</button>
     </div>
 
     <div>
         <h2>Options</h2>
-        <button type="button" onclick="snackbar.Default('I hang out a little longer', 15000)">Timeout</button>
-        <button type="button" onclick="snackbar.Default('I can\'t be sent away by the user', 10000, false)">Undismissible</button>
+        <button type="button" onclick="demoTimeout();">Timeout Duration</button>
+        <button type="button" onclick="demoNoTimeout();">No Timeout</button>
+        <button type="button" onclick="demoNoDissmiss();">Undismissible</button>
     </div>
 
-  <script src="js/tsmi-snackbar.js?v=2.0.0"></script>
-  <script>
-      var snackbar = new SnackBar();
-  </script>
+    <div>
+        <h2>Custom</h2>
+
+        <form>
+            <div class="field">
+                <label>Message</label>
+                <input id=demo_text type=text value="Hello World!" />
+            </div>
+            <br />
+
+            <div class="field">
+                <label for=demo_dismiss><input type=checkbox id=demo_dismiss name=demo_dismiss checked />Dissimissible</label>
+
+            </div>
+            <br />
+
+            <div class="field">
+                <label>Status</label>
+                <select id="demo_status">
+                    <option value="" selected>Default</option>
+                    <option value=error>Error</option>
+                    <option value=success>Success</option>
+                    <option value=warning>Warning</option>
+                    <option value=info>Info</option>
+                </select>
+            </div>
+            <br />
+
+            <div class="field">
+                <label>Timeout</label>
+                <input id=demo_timeout type=number min=0 value=5000 />
+                <div style="text-align: right;">
+                    <label for="demo_notimeout">
+                        <input type="checkbox" id=demo_notimeout name=demo_notimeout />No Timeout
+                    </label>
+                </div>
+
+            </div>
+
+            <br />
+            <button type=button onclick="return demoCustom();">Snackbar!</button>
+        </form>
+
+    </div>
+
+    <script src="js/js-snackbar.js?v=1.0.0"></script>
+    <script>
+        var success = function () {
+            var message = SnackBar({
+                message: "Snackbar created successfully!",
+                status: "success"
+            });
+        };
+
+        var def = function () {
+            let def = SnackBar({
+                message: "Hello World!"
+            })
+        };
+
+        var demoError = function () {
+            let demoErrElem = SnackBar({
+                message: "Could not do the thing!",
+                status: "danger"
+            })
+        }
+
+        var demoWarning = function () {
+            SnackBar({
+                message: "Alert! Something is happening that you may not expect!",
+                status: "warning"
+            })
+        }
+
+        var demoInfo = function () {
+            SnackBar({
+                message: "Here's some information for you",
+                status: "info"
+            })
+        }
+
+        var demoTimeout = function () {
+            SnackBar({
+                message: "I hang out for a little longer",
+                timeout: 25000
+            })
+        }
+
+        var demoNoTimeout = function () {
+            SnackBar({
+                message: "You need to manually send me away",
+                timeout: false
+            })
+        }
+
+        var demoNoDissmiss = function () {
+            SnackBar({
+                message: "You cannot send me away!",
+                dismissible: false
+            })
+        }
+
+        function demoCustom() {
+            let timeout = document.getElementById("demo_timeout").value;
+
+            if (document.getElementById("demo_notimeout").checked) {
+                timeout = false;
+            }
+
+            SnackBar({
+                message: document.getElementById("demo_text").value,
+                dismissible: document.getElementById("demo_dismiss").checked,
+                status: document.getElementById("demo_status").value,
+                timeout: timeout
+            });
+
+            return false;
+        }
+    </script>
 </body>
+
 </html>
