@@ -138,8 +138,8 @@ function SnackBar(userOptions) {
     }
 
     this.Open = function() {
-        let contentHeight = _Element.scrollHeight; // get the height of the content
-        console.debug(contentHeight);
+        let contentHeight = _Element.firstElementChild.scrollHeight; // get the height of the content
+
         _Element.style.height = contentHeight + "px";
         _Element.style.opacity = 1;
         _Element.style.marginTop = "5px";
