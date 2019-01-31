@@ -4,6 +4,7 @@ function SnackBar(userOptions) {
     var _Interval;
     var _Message;
     var _Element;
+    var _Container;
     
     
     var _OptionDefaults = {
@@ -15,18 +16,20 @@ function SnackBar(userOptions) {
     var _Options = _OptionDefaults;
 
     function _Create() {
-        let container = document.getElementsByClassName("js-snackbar-container")[0];
+        _Container = document.getElementsByClassName("js-snackbar-container")[0];
 
-        if (!container) {
+        if (!_Container) {
             // need to create a new container for notifications
-            container = document.createElement("div");
-            container.classList.add("js-snackbar-container");
+            _Container = document.createElement("div");
+            _Container.classList.add("js-snackbar-container");
 
-            document.body.appendChild(container);
+            document.body.appendChild(_Container);
         }
-
         _Element = document.createElement("div");
-        _Element.classList.add("js-snackbar", "js-snackbar--show");
+        _Element.classList.add("js-snackbar__wrapper");
+
+        let innerSnack = document.createElement("div");
+        innerSnack.classList.add("js-snackbar", "js-snackbar--show");
     
         if (_Options.status) {
             _Options.status = _Options.status.toLowerCase().trim();
@@ -48,14 +51,14 @@ function SnackBar(userOptions) {
                 status.classList.add("js-snackbar--info");
             }
 
-            _Element.appendChild(status);
+            innerSnack.appendChild(status);
         }
         
         _Message = document.createElement("span");
         _Message.classList.add("js-snackbar__message");
         _Message.textContent = _Options.message;
 
-        _Element.appendChild(_Message);
+        innerSnack.appendChild(_Message);
 
         if (_Options.dismissible) {
             let closeBtn = document.createElement("span");
@@ -64,10 +67,16 @@ function SnackBar(userOptions) {
 
             closeBtn.onclick = Close;
 
-            _Element.appendChild(closeBtn);
+            innerSnack.appendChild(closeBtn);
         }
 
-        container.appendChild(_Element);
+        _Element.style.height = "0px";
+        _Element.style.opacity = "0";
+        _Element.style.marginTop = "0px";
+        _Element.style.marginBottom = "0px";
+
+        _Element.appendChild(innerSnack);
+        _Container.appendChild(_Element);
 
         if (_Options.timeout !== false) {
             _Interval = setTimeout(Close, _Options.timeout);
@@ -128,17 +137,47 @@ function SnackBar(userOptions) {
         }
     }
 
+    this.Open = function() {
+        let contentHeight = _Element.firstElementChild.scrollHeight; // get the height of the content
+
+        _Element.style.height = contentHeight + "px";
+        _Element.style.opacity = 1;
+        _Element.style.marginTop = "5px";
+        _Element.style.marginBottom = "5px";
+
+        _Element.addEventListener("transitioned", function() {
+            _Element.removeEventListener("transitioned", arguments.callee);
+            _Element.style.height = null;
+        })
+    }
+
     this.Close = function () {
         if (_Interval)
             clearInterval(_Interval);
-    
-        _Element.classList.remove("js-snackbar--show");
+
+        let snackbarHeight = _Element.scrollHeight; // get the auto height as a px value
+        let snackbarTransitions = _Element.style.transition;
+        _Element.style.transition = "";
+
+        requestAnimationFrame(function() {
+            _Element.style.height = snackbarHeight + "px"; // set the auto height to the px height
+            _Element.style.opacity = 1;
+            _Element.style.marginTop = "0px";
+            _Element.style.marginBottom = "0px";
+            _Element.style.transition = snackbarTransitions
+
+            requestAnimationFrame(function() {
+                _Element.style.height = "0px";
+                _Element.style.opacity = 0;
+            })
+        });
 
         setTimeout(function() {
-            _Element.remove();
+            _Container.removeChild(_Element);
         }, 1000);
     };
 
     _ConfigureDefaults();
     _Create();
+    Open();
 }

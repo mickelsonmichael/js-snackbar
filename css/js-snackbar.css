@@ -14,6 +14,15 @@
     box-sizing: border-box;
 }
 
+.js-snackbar__wrapper {
+    overflow: hidden;
+    height: auto;
+    margin: 5px 0;
+    transition: all ease .5s;
+    border-radius: 3px;
+    box-shadow: 0 0 4px 0 black;
+}
+
 .js-snackbar {
     display: inline-flex;
     box-sizing: border-box;
@@ -21,64 +30,7 @@
     color: #eee;
     font-size: 16px;
     background-color: #262626;
-    transition: all ease .5s;
-    box-shadow: 0 0 4px 0 black;
-    z-index: 1000;
-
-    animation: snackbar-hide 1s;
-
-    position: relative;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(100%);
-    max-height: 0;
-}
-
-.js-snackbar--show {
-    animation: snackbar-show .5s;
-    opacity: 1;
-    height: auto;
-    transform: translateY(0);
-    max-height: none;
-    margin-top: 10px;
-}
-
-@keyframes snackbar-hide {
-    0% {
-        transform: translateY(0);
-        opacity: 1;
-        max-height: 500px;
-        margin-top: 10px;
-    }
-
-    100% {
-        opacity: 0;
-        transform: translateY(100%);
-        margin-top: 0;
-        max-height: 0;
-    }
-}
-
-@keyframes snackbar-show {
-    0% {
-        opacity: 0;
-        transform: translateY(100%);
-        max-height: 0;
-        margin-top: 0;
-    }
-
-    100% {
-
-        max-height: 500px;
-        margin-top: 10px;
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-.js-snackbar--hidden {
-    animation-name: hide-snackbar;
-    animation-duration: 1s;
+    vertical-align: bottom;
 }
 
 .js-snackbar__close,
@@ -127,6 +79,7 @@
     display: flex;
     align-items: center;
     padding: 0 10px;
+    user-select: none;
 }
 
 .js-snackbar__close:hover {
