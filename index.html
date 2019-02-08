@@ -21,6 +21,15 @@
           display: inline-block;
           margin-bottom: 3px;
       }
+
+      .box {
+          width: 500px;
+          max-width: 100%;
+          height: 250px;
+          max-height: 100%;
+          border: 1px solid blue;
+            position: relative;
+      }
   </style>
 
 </head>
@@ -149,6 +158,27 @@
                             }
                         }
                     ]
+                })
+            }
+        </script>
+    </div>
+
+    <hr />
+
+    <div>
+        <h2>Containers</h2>
+
+        <button type="button" onclick="demoContainer();">Within the Box</button>
+
+        <div id="container" class="box">
+
+        </div>
+
+        <script>
+            var demoContainer = function() {
+                new SnackBar({
+                    message: "I'm inside this box",
+                    container: "container"
                 })
             }
         </script>
