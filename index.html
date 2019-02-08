@@ -36,12 +36,16 @@
         <button type="button" onclick="demoInfo();">Info</button>
     </div>
 
+    <hr />
+
     <div>
         <h2>Options</h2>
         <button type="button" onclick="demoTimeout();">Timeout Duration</button>
         <button type="button" onclick="demoNoTimeout();">No Timeout</button>
         <button type="button" onclick="demoNoDissmiss();">Undismissible</button>
     </div>
+
+    <hr />
 
     <div>
         <h2>Custom</h2>
@@ -86,6 +90,68 @@
             <button type=button onclick="return demoCustom();">Snackbar!</button>
         </form>
 
+    </div>
+
+    <hr />
+
+    <div>
+        <h2>Actions</h2>
+
+        <button type="button" onclick="demoActions();">Basic Action</button>
+        <button type="button" onclick="demoClosing();">Closing Action</button>
+        <button type="button" onclick="demoActionsClosing();">Closing Action with Custom Function</button>
+
+        <script>
+            var demoActions = function() {
+                console.debug("Testing Actions");
+
+                var message = SnackBar({
+                    message: "Click the button for an action",
+                    timeout: 30000,
+                    actions: [
+                        {
+                            text: "Click Me!",
+                            function: function(){
+                                alert("A-C-T-I-O-N");
+                            }
+                        }
+                    ]
+                })
+            }
+
+            var demoClosing = function() {
+                console.debug("Testing Closing Action");
+
+                var message = SnackBar({
+                    message: "Click the button to close",
+                    timeout: 30000,
+                    actions: [
+                        {
+                            text: "Close",
+                            dissmiss: true
+                        }
+                    ]
+                })
+            }
+
+            var demoActionsClosing = function() {
+                console.debug("Testing Actions and Closing");
+
+                var message = SnackBar({
+                    message: "Click the button!",
+                    timeout: 30000,
+                    actions: [
+                        {
+                            text: "I close and act!",
+                            dissmiss: true,
+                            function: function() {
+                                alert("You've done an action and closed. The snackbar will disappear once you press OK");
+                            }
+                        }
+                    ]
+                })
+            }
+        </script>
     </div>
 
     <script src="js/js-snackbar.js?v=1.0.0"></script>

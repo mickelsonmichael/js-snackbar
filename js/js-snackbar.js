@@ -11,11 +11,13 @@ function SnackBar(userOptions) {
         message: "Operation performed successfully.",
         dismissible: true,
         timeout: 5000,
-        status: ""
+        status: "",
+        actions: []
     }
     var _Options = _OptionDefaults;
 
     function _Create() {
+        var context = this;
         _Container = document.getElementsByClassName("js-snackbar-container")[0];
 
         if (!_Container) {
@@ -28,13 +30,13 @@ function SnackBar(userOptions) {
         _Element = document.createElement("div");
         _Element.classList.add("js-snackbar__wrapper");
 
-        let innerSnack = document.createElement("div");
+        var innerSnack = document.createElement("div");
         innerSnack.classList.add("js-snackbar", "js-snackbar--show");
     
         if (_Options.status) {
             _Options.status = _Options.status.toLowerCase().trim();
 
-            let status = document.createElement("span");
+            var status = document.createElement("span");
             status.classList.add("js-snackbar__status");
 
 
@@ -60,8 +62,49 @@ function SnackBar(userOptions) {
 
         innerSnack.appendChild(_Message);
 
+        if (_Options.actions !== undefined && typeof _Options.actions === "object" && _Options.actions.length !== undefined) {
+            for (var i = 0; i < _Options.actions.length; i++) {
+                var thisAction = _Options.actions[i];
+
+                if (thisAction !== undefined 
+                    && thisAction.text !== undefined && typeof thisAction.text === "string") {
+
+                        if (thisAction.function !== undefined && typeof thisAction.function === "function"
+                            || thisAction.dissmiss !== undefined && typeof thisAction.dissmiss === "boolean" && thisAction.dissmiss === true) {
+
+                                var newButton = document.createElement("span");
+                                    newButton.classList.add("js-snackbar__action");
+
+                                    if (thisAction !== undefined && typeof thisAction.function === "function") {
+                                        if (thisAction.dissmiss !== undefined && typeof thisAction.dissmiss === "boolean" && thisAction.dissmiss === true) {
+                                            newButton.onclick = function() {
+                                                thisAction.function();
+                                                context.Close()
+                                            };
+                                        }
+                                        else {
+                                            newButton.onclick = thisAction.function;
+                                        }
+                                    }
+                                    else {
+                                        newButton.onclick = context.Close;
+                                    }
+
+                                    newButton.textContent = thisAction.text;
+
+                                    innerSnack.appendChild(newButton);
+
+
+                            }
+                        
+                    }
+            }
+
+
+        }
+
         if (_Options.dismissible) {
-            let closeBtn = document.createElement("span");
+            var closeBtn = document.createElement("span");
             closeBtn.classList.add("js-snackbar__close");
             closeBtn.innerText = "\u00D7";
 
@@ -135,10 +178,14 @@ function SnackBar(userOptions) {
         if (userOptions.status !== undefined) {
             _Options.status = userOptions.status;
         }
+
+        if (userOptions.actions !== undefined) {
+            _Options.actions = userOptions.actions;
+        }
     }
 
     this.Open = function() {
-        let contentHeight = _Element.firstElementChild.scrollHeight; // get the height of the content
+        var contentHeight = _Element.firstElementChild.scrollHeight; // get the height of the content
 
         _Element.style.height = contentHeight + "px";
         _Element.style.opacity = 1;
@@ -155,8 +202,8 @@ function SnackBar(userOptions) {
         if (_Interval)
             clearInterval(_Interval);
 
-        let snackbarHeight = _Element.scrollHeight; // get the auto height as a px value
-        let snackbarTransitions = _Element.style.transition;
+        var snackbarHeight = _Element.scrollHeight; // get the auto height as a px value
+        var snackbarTransitions = _Element.style.transition;
         _Element.style.transition = "";
 
         requestAnimationFrame(function() {
