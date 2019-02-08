@@ -1,10 +1,11 @@
 ﻿
 function SnackBar(userOptions) {
-    var snackbar = this;
+    var _This = this;
     var _Interval;
     var _Message;
     var _Element;
     var _Container;
+    var _Parent;
     
     
     var _OptionDefaults = {
@@ -17,16 +18,36 @@ function SnackBar(userOptions) {
     var _Options = _OptionDefaults;
 
     function _Create() {
-        var context = this;
-        _Container = document.getElementsByClassName("js-snackbar-container")[0];
+
+        if (_Options.container === null || _Options.container === undefined) {
+            _Parent = document.body;
+        }
+        else {
+            if (typeof _Options.container === "object" && _Options.container instanceof Element) {
+                _Container = _Options.container;
+            }
+            else {
+                var targetParent = document.getElementById(_Options.container);
+
+                if (targetParent === undefined) {
+                    console.error("SnackBar: Could not find target container " + _Options.container);
+                    targetParent = document.body;
+                }
+
+                _Parent = targetParent;
+            }
+        }
+
+        _Container = _Parent.getElementsByClassName("js-snackbar-container")[0];
 
         if (!_Container) {
             // need to create a new container for notifications
             _Container = document.createElement("div");
             _Container.classList.add("js-snackbar-container");
 
-            document.body.appendChild(_Container);
+            _Parent.appendChild(_Container);
         }
+
         _Element = document.createElement("div");
         _Element.classList.add("js-snackbar__wrapper");
 
@@ -79,7 +100,7 @@ function SnackBar(userOptions) {
                                         if (thisAction.dissmiss !== undefined && typeof thisAction.dissmiss === "boolean" && thisAction.dissmiss === true) {
                                             newButton.onclick = function() {
                                                 thisAction.function();
-                                                context.Close()
+                                                _This.Close()
                                             };
                                         }
                                         else {
@@ -87,7 +108,7 @@ function SnackBar(userOptions) {
                                         }
                                     }
                                     else {
-                                        newButton.onclick = context.Close;
+                                        newButton.onclick = _This.Close;
                                     }
 
                                     newButton.textContent = thisAction.text;
@@ -108,7 +129,7 @@ function SnackBar(userOptions) {
             closeBtn.classList.add("js-snackbar__close");
             closeBtn.innerText = "\u00D7";
 
-            closeBtn.onclick = Close;
+            closeBtn.onclick = _This.Close;
 
             innerSnack.appendChild(closeBtn);
         }
@@ -122,7 +143,7 @@ function SnackBar(userOptions) {
         _Container.appendChild(_Element);
 
         if (_Options.timeout !== false) {
-            _Interval = setTimeout(Close, _Options.timeout);
+            _Interval = setTimeout(_This.Close, _Options.timeout);
         }
     }
 
@@ -182,6 +203,10 @@ function SnackBar(userOptions) {
         if (userOptions.actions !== undefined) {
             _Options.actions = userOptions.actions;
         }
+
+        if (userOptions.container !== undefined && (typeof userOptions.container === "string" || typeof userOptions.container === "object")) {
+            _Options.container = userOptions.container;
+        }
     }
 
     this.Open = function() {
@@ -226,5 +251,5 @@ function SnackBar(userOptions) {
 
     _ConfigureDefaults();
     _Create();
-    Open();
+    _This.Open();
 }
