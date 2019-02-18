@@ -18,7 +18,6 @@ function SnackBar(userOptions) {
     var _Options = _OptionDefaults;
 
     function _Create() {
-
         if (_Options.container === null || _Options.container === undefined) {
             _Parent = document.body;
         }
@@ -38,7 +37,7 @@ function SnackBar(userOptions) {
             }
         }
 
-        _Container = _Parent.getElementsByClassName("js-snackbar-container")[0];
+        _Container = _Parent.searchChildren(".js-snackbar-container");
 
         if (!_Container) {
             // need to create a new container for notifications
@@ -207,6 +206,38 @@ function SnackBar(userOptions) {
         if (userOptions.container !== undefined && (typeof userOptions.container === "string" || typeof userOptions.container === "object")) {
             _Options.container = userOptions.container;
         }
+    }
+
+
+
+    Node.prototype.searchChildren = function(selector) {
+        var htmlCollection = this.children; 
+        
+        if (selector[0] === ".") {
+            selector = selector.substr(1, selector.length);
+
+            for (var i = 0; i < htmlCollection.length; i++) {
+                var node = htmlCollection.item(i);
+
+                if (node.nodeType === 1 && node.classList.length > 0 && node.classList.contains(selector)) {
+                    return node;
+                }
+            }
+
+        }
+        else {
+            if (selector[0] === "#") selector = selector.substr(1, selector.length);
+
+            for (var i = 0; i < htmlCollection.length; i++) {
+                var node = htmlCollection.item(i);
+
+                if (node.nodeType === 1 && node.id === selector) {
+                    return node;
+                }
+            }
+        }
+
+        return null;
     }
 
     this.Open = function() {
