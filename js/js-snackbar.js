@@ -37,7 +37,7 @@ function SnackBar(userOptions) {
             }
         }
 
-        _Container = _Parent.searchChildren(".js-snackbar-container");
+        _Container = searchChildren(_Parent);
 
         if (!_Container) {
             // need to create a new container for notifications
@@ -210,30 +210,16 @@ function SnackBar(userOptions) {
 
 
 
-    Node.prototype.searchChildren = function(selector) {
-        var htmlCollection = this.children; 
-        
-        if (selector[0] === ".") {
-            selector = selector.substr(1, selector.length);
+    var searchChildren = function(target) {
+        var htmlCollection = target.children;
+        var node = null;
+        var i = 0;
 
-            for (var i = 0; i < htmlCollection.length; i++) {
-                var node = htmlCollection.item(i);
+        for (i = 0; i < htmlCollection.length; i++) {
+            node = htmlCollection.item(i);
 
-                if (node.nodeType === 1 && node.classList.length > 0 && node.classList.contains(selector)) {
-                    return node;
-                }
-            }
-
-        }
-        else {
-            if (selector[0] === "#") selector = selector.substr(1, selector.length);
-
-            for (var i = 0; i < htmlCollection.length; i++) {
-                var node = htmlCollection.item(i);
-
-                if (node.nodeType === 1 && node.id === selector) {
-                    return node;
-                }
+            if (node.nodeType === 1 && node.classList.length > 0 && node.classList.contains("js-snackbar-container")) {
+                return node;
             }
         }
 
