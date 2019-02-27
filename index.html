@@ -10,179 +10,203 @@
     <meta name="author" content="Michael Mickelson">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="css/js-snackbar.css?v=1.0.0">
+    <link rel="stylesheet" href="css/js-snackbar.css?v=2.0.0" />
+    <link rel="stylesheet" href="site.css?v=1.0.0" />
 
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .field {
-            display: inline-block;
-            margin-bottom: 3px;
-        }
-
-        .box {
-            width: 500px;
-            max-width: 100%;
-            height: 250px;
-            max-height: 100%;
-            border: 1px solid blue;
-            position: relative;
-            overflow: hidden;
-        }
+        
     </style>
 
 </head>
 
 <body>
-    <h1 id="title" class="title">Snackbar Demo</h1>
-    <div>
-        <h2>Context Colors</h2>
-        <button type="button" onclick="def();">Default</button>
-        <button type="button" onclick="success();">Success</button>
-        <button type="button" onclick="demoError();">Error</button>
-        <button type="button" onclick="demoWarning();">Warning</button>
-        <button type="button" onclick="demoInfo();">Info</button>
+    <div class="nav">
+        <h1 id="title" class="nav-title">JS-Snackbar</h1>
+
+        <ul class="nav-ul">
+            <li class="nav-li">
+                <a href="#Colors" class="nav-a">
+                    Context Colors
+                </a>
+            </li>
+
+            <li class="nav-li">
+                    <a href="#Options" class="nav-a">
+                        Options
+                    </a>
+                </li>
+
+                <li class="nav-li">
+                        <a href="#Custom" class="nav-a">
+                            Custom
+                        </a>
+                    </li>
+
+                    <li class="nav-li">
+                            <a href="#Actions" class="nav-a">
+                                Actions
+                            </a>
+                        </li>
+
+            <li class="nav-li">
+                <a href="#Containers" class="nav-a">
+                    Containers
+                </a>
+            </li>
+        </ul>
+
+        <p class="nav-footer">
+            Created by <a href="https://github.com/mickelsonmichael" target="_blank">mickelsonmichael</a>
+            <br />
+            <a href="https://github.com/mickelsonmichael/js-snackbar/blob/master/LICENSE" target="_blank">MIT License</a>
+        </p>
     </div>
 
-    <hr />
+    <div class="content">
+        <div id="Colors" class="section">
+            <h2 class="section-title">Context Colors</h2>
+            <button type="button" class="section-button" onclick="def();">Default</button>
+            <button type="button" class="section-button" onclick="success();">Success</button>
+            <button type="button" class="section-button" onclick="demoError();">Error</button>
+            <button type="button" class="section-button" onclick="demoWarning();">Warning</button>
+            <button type="button" class="section-button" onclick="demoInfo();">Info</button>
+        </div>
+            
+            
+        <div id="Options" class="section">
+            <h2 class="section-title">Options</h2>
+            <button type="button" class="section-button" onclick="demoTimeout();">Timeout Duration</button>
+            <button type="button" class="section-button" onclick="demoNoTimeout();">No Timeout</button>
+            <button type="button" class="section-button" onclick="demoNoDissmiss();">Undismissible</button>
+        </div>
+            
+        <div id="Custom" class="section">
+            <h2 class="section-title">Custom</h2>
+    
+            <form>
+                <div class="field">
+                    <label>Message</label>
+                    <input id=demo_text type=text value="Hello World!" />
+                </div>
+    
+                
+    
+                <div class="field">
+                    <label>Status</label>
+                    <select id="demo_status">
+                        <option value="" selected>Default</option>
+                        <option value=error>Error</option>
+                        <option value=success>Success</option>
+                        <option value=warning>Warning</option>
+                        <option value=info>Info</option>
+                    </select>
+                </div>
+    
+                <div class="field">
+                    <label>Timeout</label>
+                    <input id=demo_timeout type=number min=0 value=5000 />
+                    <div style="text-align: right;">
+                        
+                    </div>
+    
+                </div>
 
-    <div>
-        <h2>Options</h2>
-        <button type="button" onclick="demoTimeout();">Timeout Duration</button>
-        <button type="button" onclick="demoNoTimeout();">No Timeout</button>
-        <button type="button" onclick="demoNoDissmiss();">Undismissible</button>
-    </div>
+                <div class="field">
+                    <label for=demo_dismiss>
+                        <input type=checkbox id=demo_dismiss name=demo_dismiss checked />
+                        Dissimissible
+                    </label>
 
-    <hr />
-
-    <div>
-        <h2>Custom</h2>
-
-        <form>
-            <div class="field">
-                <label>Message</label>
-                <input id=demo_text type=text value="Hello World!" />
-            </div>
-            <br />
-
-            <div class="field">
-                <label for=demo_dismiss><input type=checkbox id=demo_dismiss name=demo_dismiss checked />Dissimissible</label>
-
-            </div>
-            <br />
-
-            <div class="field">
-                <label>Status</label>
-                <select id="demo_status">
-                    <option value="" selected>Default</option>
-                    <option value=error>Error</option>
-                    <option value=success>Success</option>
-                    <option value=warning>Warning</option>
-                    <option value=info>Info</option>
-                </select>
-            </div>
-            <br />
-
-            <div class="field">
-                <label>Timeout</label>
-                <input id=demo_timeout type=number min=0 value=5000 />
-                <div style="text-align: right;">
                     <label for="demo_notimeout">
                         <input type="checkbox" id=demo_notimeout name=demo_notimeout />No Timeout
                     </label>
                 </div>
 
-            </div>
-
-            <br />
-            <button type=button onclick="return demoCustom();">Snackbar!</button>
-        </form>
-
-    </div>
-
-    <hr />
-
-    <div>
-        <h2>Actions</h2>
-
-        <button type="button" onclick="demoActions();">Basic Action</button>
-        <button type="button" onclick="demoClosing();">Closing Action</button>
-        <button type="button" onclick="demoActionsClosing();">Closing Action with Custom Function</button>
-
-        <script>
-            var demoActions = function() {
-                console.debug("Testing Actions");
-
-                var message = SnackBar({
-                    message: "Click the button for an action",
-                    timeout: 30000,
-                    actions: [
-                        {
-                            text: "Click Me!",
-                            function: function(){
-                                alert("A-C-T-I-O-N");
-                            }
-                        }
-                    ]
-                })
-            }
-
-            var demoClosing = function() {
-                console.debug("Testing Closing Action");
-
-                var message = SnackBar({
-                    message: "Click the button to close",
-                    timeout: 30000,
-                    actions: [
-                        {
-                            text: "Close",
-                            dissmiss: true
-                        }
-                    ]
-                })
-            }
-
-            var demoActionsClosing = function() {
-                console.debug("Testing Actions and Closing");
-
-                var message = SnackBar({
-                    message: "Click the button!",
-                    timeout: 30000,
-                    actions: [
-                        {
-                            text: "I close and act!",
-                            dissmiss: true,
-                            function: function() {
-                                alert("You've done an action and closed. The snackbar will disappear once you press OK");
-                            }
-                        }
-                    ]
-                })
-            }
-        </script>
-    </div>
-
-    <hr />
-
-    <div>
-        <h2>Containers</h2>
-
-        <button type="button" onclick="demoContainer();">Within the Box</button>
-
-        <div id="container" class="box">
-
+                <button type=button class="section-button" onclick="return demoCustom();">Snackbar!</button>
+            </form>
+    
         </div>
-
-        <script>
-            var demoContainer = function() {
-                new SnackBar({
-                    message: "I'm inside this box",
-                    container: "container"
-                })
-            }
-        </script>
+            
+            
+        <div id="Actions" class="section">
+            <h2 class="section-title">Actions</h2>
+    
+            <button type="button" class="section-button" onclick="demoActions();">Basic Action</button>
+            <button type="button" class="section-button" onclick="demoClosing();">Closing Action</button>
+            <button type="button" class="section-button" onclick="demoActionsClosing();">Closing Action with Custom Function</button>
+    
+            <script>
+                var demoActions = function() {
+                    console.debug("Testing Actions");
+    
+                    var message = SnackBar({
+                        message: "Click the button for an action",
+                        timeout: 30000,
+                        actions: [
+                            {
+                                text: "Click Me!",
+                                function: function(){
+                                    alert("A-C-T-I-O-N");
+                                }
+                            }
+                        ]
+                    })
+                }
+    
+                var demoClosing = function() {
+                    console.debug("Testing Closing Action");
+    
+                    var message = SnackBar({
+                        message: "Click the button to close",
+                        timeout: 30000,
+                        actions: [
+                            {
+                                text: "Close",
+                                dissmiss: true
+                            }
+                        ]
+                    })
+                }
+    
+                var demoActionsClosing = function() {
+                    console.debug("Testing Actions and Closing");
+    
+                    var message = SnackBar({
+                        message: "Click the button!",
+                        timeout: 30000,
+                        actions: [
+                            {
+                                text: "I close and act!",
+                                dissmiss: true,
+                                function: function() {
+                                    alert("You've done an action and closed. The snackbar will disappear once you press OK");
+                                }
+                            }
+                        ]
+                    })
+                }
+            </script>
+        </div>
+            
+            
+        <div id="Containers" class="section">
+            <h2 class="section-title">Containers</h2>
+    
+            <button type="button" class="section-button" onclick="demoContainer();">Within the Box</button>
+    
+            <div id="container" class="box">
+                    
+            </div>
+    
+            <script>
+                var demoContainer = function() {
+                    new SnackBar({
+                        message: "I'm inside this box",
+                        container: "container"
+                    })
+                }
+            </script>
+        </div>
     </div>
 
     <script src="js/js-snackbar.js?v=1.0.0"></script>

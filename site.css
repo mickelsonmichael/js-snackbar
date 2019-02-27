@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    overflow: hidden;
+}
+
+.nav {
+    min-width: 300px;
+    background-color: #2196f3;
+    padding: 0;
+    margin: 0;
+    font-size: 105%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-title {
+    font-size: 20px;
+    word-break: break-all;
+    border-bottom: 1px inset white;
+    padding: .5rem 0;
+    margin: .5rem;
+}
+
+.nav-ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-li {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-a {
+    padding: .5rem;
+    text-decoration: none;
+    display: block;
+    color: white;
+}
+
+.nav-a:hover,
+.nav-a:active {
+    color: #2196f3;
+    background-color: white;
+}
+
+.nav-footer {
+    margin-top: auto;
+    padding: .5rem;
+    font-size: 75%;
+}
+
+.nav-footer a {
+    color: white;
+}
+
+.content {
+    padding: 1em;
+    overflow: auto;
+    flex-grow: 1;
+}
+
+.section {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid black;
+}
+
+
+.section-button {
+    padding: 0.5rem 1rem;
+    border-radius: 3px;
+    border: none;
+    background-color: #2196f3;
+    color: white;
+    font-size: 102%;
+    cursor: pointer;
+}
+
+.section-button:active {
+    background-color: #5fb3f8;
+}
+
+.field {
+    display: block;
+    max-width: 400px;
+    margin: 0 auto 1rem auto;
+}
+
+.field label {
+    font-size: 90%;
+    display: block;
+    text-align: left;
+}
+
+.field input[type=text],
+.field input[type=number],
+.field select {
+    padding: 0.5rem 1rem;
+    font-size: 102%;
+    border-radius: 3px;
+    border: 1px solid #111;
+    width: 100%;
+}
+
+.box {
+    max-width: 80%;
+    height: 250px;
+    max-height: 100%;
+    border: 1px solid blue;
+    position: relative;
+    overflow: hidden;
+    margin: 1rem auto;
+}
