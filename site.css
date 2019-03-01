@@ -36,6 +36,7 @@ body {
     border-bottom: 1px inset white;
     padding: .5rem 0;
     margin: .5rem;
+    font-weight: bold;
 }
 
 .nav-ul {
@@ -76,6 +77,18 @@ body {
     padding: 1em;
     overflow: auto;
     flex-grow: 1;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #2196f3;
+    border: 3px solid #2196f3;
+    background-color: white;
+    text-align: center;
+    padding: 1em 0; 
+    white-space: nowrap;
+    min-width: auto;
+    overflow: hidden;
 }
 
 .section {

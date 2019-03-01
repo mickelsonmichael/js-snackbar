@@ -5,23 +5,18 @@
 <head>
     <meta charset="utf-8">
 
-    <title>js-snackbar</title>
-    <meta name="description" content="DEMO">
+    <title>JS-SnackBar - A simple snackbar/toast tool</title>
+    <meta name="description" content="JS-SnackBar is a simple, jQuery-free tool that enables a notification to be shown on screen, follow Google's Material UI design.">
     <meta name="author" content="Michael Mickelson">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="css/js-snackbar.css?v=2.0.0" />
     <link rel="stylesheet" href="site.css?v=1.0.0" />
-
-    <style>
-        
-    </style>
-
 </head>
 
 <body>
     <div class="nav">
-        <h1 id="title" class="nav-title">JS-Snackbar</h1>
+        <p id="title" class="nav-title">JS-Snackbar</p>
 
         <ul class="nav-ul">
             <li class="nav-li">
@@ -62,7 +57,28 @@
         </p>
     </div>
 
+    
+
     <div class="content">
+        <h1>JS-Snackbar</h1>
+
+        <div class="section">
+            <h2 class="section-title">What is a Snackbar?</h2>
+            <p>
+                According to <a href="https://material.io/design/components/snackbars.html">Material Design</a> a Snackbar or Toast provides "brief messages about app processes at the bottom of the screen."
+            </p>
+    
+            <p>
+                Generally, they should not have an icon associated with it and should be only one line on most devices.
+            </p>
+    
+            <p>
+                While this version of a Snackbar follows the Material Design semantics closely, it strays in several major ways. 
+                You can read more about those differences on the <a href="" target="_blank">GitHub</a> page.
+            </p>
+        </div>
+
+
         <div id="Colors" class="section">
             <h2 class="section-title">Context Colors</h2>
             <button type="button" class="section-button" onclick="def();">Default</button>
@@ -209,7 +225,8 @@
         </div>
     </div>
 
-    <script src="js/js-snackbar.js?v=1.0.0"></script>
+    <script src="js/js-snackbar.js?v=1.1.0"></script>
+    <script src="site.js?v=1.0.0"></script>
     <script>
         var success = function () {
             console.debug("testing success");
