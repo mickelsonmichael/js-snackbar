@@ -185,7 +185,6 @@ header h1 {
 .field {
     display: block;
     max-width: 400px;
-    margin: 0 auto 1rem auto;
 }
 
 .field label {
