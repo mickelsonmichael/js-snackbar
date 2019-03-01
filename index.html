@@ -6,263 +6,334 @@
     <meta charset="utf-8">
 
     <title>JS-SnackBar - A simple snackbar/toast tool</title>
-    <meta name="description" content="JS-SnackBar is a simple, jQuery-free tool that enables a notification to be shown on screen, follow Google's Material UI design.">
+    <meta name="description"
+        content="JS-SnackBar is a simple, jQuery-free tool that enables a notification to be shown on screen, follow Google's Material UI design.">
     <meta name="author" content="Michael Mickelson">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="css/js-snackbar.css?v=2.0.0" />
     <link rel="stylesheet" href="site.css?v=1.0.0" />
 </head>
 
 <body>
-    <div class="nav">
-        <p id="title" class="nav-title">JS-Snackbar</p>
+    <header class="header">
+        <button id="header-button" type="menu" class="button button--inverse nav-opener">
+            <span class="material-icons">menu</span>
+            Menu
+        </button>
 
-        <ul class="nav-ul">
-            <li class="nav-li">
-                <a href="#Colors" class="nav-a">
-                    Context Colors
-                </a>
-            </li>
+        <h1>JS-Snackbar</h1>
+    </header>
 
-            <li class="nav-li">
-                    <a href="#Options" class="nav-a">
-                        Options
+    <div class="main-body">
+        <nav id="nav" class="nav">
+            <div id="title" class="nav-title">
+                JS-Snackbar
+                <button type="menu" class="nav-opener nav-close">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+
+            <ul class="nav-ul">
+                <li class="nav-li">
+                    <a href="#Colors" class="nav-a">
+                        Context Colors
                     </a>
                 </li>
 
                 <li class="nav-li">
-                        <a href="#Custom" class="nav-a">
-                            Custom
-                        </a>
-                    </li>
+                    <a href="#Options" class="nav-a">
+                        Timeout Options
+                    </a>
+                </li>
 
-                    <li class="nav-li">
-                            <a href="#Actions" class="nav-a">
-                                Actions
-                            </a>
-                        </li>
+                <li class="nav-li">
+                    <a href="#tryit" class="nav-a">
+                        Try it Yourself
+                    </a>
+                </li>
 
-            <li class="nav-li">
-                <a href="#Containers" class="nav-a">
-                    Containers
-                </a>
-            </li>
-        </ul>
+                <li class="nav-li">
+                    <a href="#Actions" class="nav-a">
+                        Actions
+                    </a>
+                </li>
 
-        <p class="nav-footer">
-            Created by <a href="https://github.com/mickelsonmichael" target="_blank">mickelsonmichael</a>
-            <br />
-            <a href="https://github.com/mickelsonmichael/js-snackbar/blob/master/LICENSE" target="_blank">MIT License</a>
-        </p>
-    </div>
+                <li class="nav-li">
+                    <a href="#Containers" class="nav-a">
+                        Containers
+                    </a>
+                </li>
+            </ul>
 
-    
-
-    <div class="content">
-        <h1>JS-Snackbar</h1>
-
-        <div class="section">
-            <h2 class="section-title">What is a Snackbar?</h2>
-            <p>
-                According to <a href="https://material.io/design/components/snackbars.html">Material Design</a> a Snackbar or Toast provides "brief messages about app processes at the bottom of the screen."
+            <p class="nav-footer">
+                Created by <a href="https://github.com/mickelsonmichael" target="_blank">mickelsonmichael</a>
+                <br />
+                <a href="https://github.com/mickelsonmichael/js-snackbar/blob/master/LICENSE" target="_blank">MIT
+                    License</a>
             </p>
-    
-            <p>
-                Generally, they should not have an icon associated with it and should be only one line on most devices.
-            </p>
-    
-            <p>
-                While this version of a Snackbar follows the Material Design semantics closely, it strays in several major ways. 
-                You can read more about those differences on the <a href="" target="_blank">GitHub</a> page.
-            </p>
-        </div>
+        </nav>
 
 
-        <div id="Colors" class="section">
-            <h2 class="section-title">Context Colors</h2>
-            <button type="button" class="section-button" onclick="def();">Default</button>
-            <button type="button" class="section-button" onclick="success();">Success</button>
-            <button type="button" class="section-button" onclick="demoError();">Error</button>
-            <button type="button" class="section-button" onclick="demoWarning();">Warning</button>
-            <button type="button" class="section-button" onclick="demoInfo();">Info</button>
-        </div>
-            
-            
-        <div id="Options" class="section">
-            <h2 class="section-title">Options</h2>
-            <button type="button" class="section-button" onclick="demoTimeout();">Timeout Duration</button>
-            <button type="button" class="section-button" onclick="demoNoTimeout();">No Timeout</button>
-            <button type="button" class="section-button" onclick="demoNoDissmiss();">Undismissible</button>
-        </div>
-            
-        <div id="Custom" class="section">
-            <h2 class="section-title">Custom</h2>
-    
-            <form>
-                <div class="field">
-                    <label>Message</label>
-                    <input id=demo_text type=text value="Hello World!" />
-                </div>
-    
-                
-    
-                <div class="field">
-                    <label>Status</label>
-                    <select id="demo_status">
-                        <option value="" selected>Default</option>
-                        <option value=error>Error</option>
-                        <option value=success>Success</option>
-                        <option value=warning>Warning</option>
-                        <option value=info>Info</option>
-                    </select>
-                </div>
-    
-                <div class="field">
-                    <label>Timeout</label>
-                    <input id=demo_timeout type=number min=0 value=5000 />
-                    <div style="text-align: right;">
-                        
-                    </div>
-    
-                </div>
 
-                <div class="field">
-                    <label for=demo_dismiss>
-                        <input type=checkbox id=demo_dismiss name=demo_dismiss checked />
-                        Dissimissible
-                    </label>
+        <section class="content">
 
-                    <label for="demo_notimeout">
-                        <input type="checkbox" id=demo_notimeout name=demo_notimeout />No Timeout
-                    </label>
-                </div>
 
-                <button type=button class="section-button" onclick="return demoCustom();">Snackbar!</button>
-            </form>
-    
-        </div>
-            
-            
-        <div id="Actions" class="section">
-            <h2 class="section-title">Actions</h2>
-    
-            <button type="button" class="section-button" onclick="demoActions();">Basic Action</button>
-            <button type="button" class="section-button" onclick="demoClosing();">Closing Action</button>
-            <button type="button" class="section-button" onclick="demoActionsClosing();">Closing Action with Custom Function</button>
-    
-            <script>
-                var demoActions = function() {
-                    console.debug("Testing Actions");
-    
-                    var message = SnackBar({
-                        message: "Click the button for an action",
-                        timeout: 30000,
-                        actions: [
-                            {
-                                text: "Click Me!",
-                                function: function(){
-                                    alert("A-C-T-I-O-N");
-                                }
-                            }
-                        ]
-                    })
-                }
-    
-                var demoClosing = function() {
-                    console.debug("Testing Closing Action");
-    
-                    var message = SnackBar({
-                        message: "Click the button to close",
-                        timeout: 30000,
-                        actions: [
-                            {
-                                text: "Close",
-                                dissmiss: true
-                            }
-                        ]
-                    })
-                }
-    
-                var demoActionsClosing = function() {
-                    console.debug("Testing Actions and Closing");
-    
-                    var message = SnackBar({
-                        message: "Click the button!",
-                        timeout: 30000,
-                        actions: [
-                            {
-                                text: "I close and act!",
-                                dissmiss: true,
-                                function: function() {
-                                    alert("You've done an action and closed. The snackbar will disappear once you press OK");
-                                }
-                            }
-                        ]
-                    })
-                }
-            </script>
-        </div>
-            
-            
-        <div id="Containers" class="section">
-            <h2 class="section-title">Containers</h2>
-    
-            <button type="button" class="section-button" onclick="demoContainer();">Within the Box</button>
-    
-            <div id="container" class="box">
-                    
+            <div class="display">
+                <span>JS-Snackbar</span>
             </div>
-    
-            <script>
-                var demoContainer = function() {
-                    new SnackBar({
-                        message: "I'm inside this box",
-                        container: "container"
-                    })
-                }
-            </script>
-        </div>
+
+            <article class="section">
+                <h2 class="section-title">What is a Snackbar?</h2>
+                <p>
+                    According to <a href="https://material.io/design/components/snackbars.html">Material Design</a> a
+                    Snackbar or Toast provides "brief messages about app processes at the bottom of the screen."
+                </p>
+
+                <p>
+                    Generally, they should not have an icon associated with it and should be only one line on most
+                    devices.
+                </p>
+
+                <p>
+                    While this version of a Snackbar follows the Material Design semantics closely, it strays in several
+                    major ways.
+                    You can read more about those differences on the <a href="" target="_blank">GitHub</a> page.
+                </p>
+            </article>
+
+
+            <article id="Colors" class="section">
+                <h2 class="section-title">Context Colors</h2>
+
+                <p>
+                    By default, there are several color options for showing notifications.
+                    When a notification is displayed, it can either have one of these context colors attached to it, or no indicator at all (Default).
+                </p>
+
+                <button type="button" class="button" onclick="def();">Default</button>
+                <button type="button" class="button" onclick="success();">Success</button>
+                <button type="button" class="button" onclick="demoError();">Error</button>
+                <button type="button" class="button" onclick="demoWarning();">Warning</button>
+                <button type="button" class="button" onclick="demoInfo();">Info</button>
+
+                <script>
+                           var success = function () {
+                                console.debug("testing success");
+                                var message = SnackBar({
+                                    message: "Snackbar created successfully!",
+                                    status: "success"
+                                });
+                            };
+
+                            var def = function () {
+                                let def = SnackBar({
+                                    message: "Hello World!"
+                                })
+                            };
+
+                            var demoError = function () {
+                                let demoErrElem = SnackBar({
+                                    message: "Could not do the thing!",
+                                    status: "danger"
+                                })
+                            }
+
+                            var demoWarning = function () {
+                                SnackBar({
+                                    message: "Alert! Something is happening that you may not expect!",
+                                    status: "warning"
+                                })
+                            }
+
+                            var demoInfo = function () {
+                                SnackBar({
+                                    message: "Here's some information for you",
+                                    status: "info"
+                                })
+                            }
+
+                </script>
+            </article>
+
+
+            <article id="Options" class="section">
+                <h2 class="section-title">Timeout Options</h2>
+
+                <p>
+                    A snackbar can be configured to stay on screen for a certain amount of time.
+                    For warnings or messages with actions, it is best to increase this time.
+                    In general, the timeout should be no shorter than 4 seconds long.
+                </p>
+
+                <p>
+                    Additionally, JS-Snackbar can also be configured to hide it's close button.
+                    This is useful in scenarios where a message is of particular importance, or where the message has a custom close action.
+                </p>
+
+                <button type="button" class="button" onclick="demoTimeout();">Timeout Duration</button>
+                <button type="button" class="button" onclick="demoNoTimeout();">No Timeout</button>
+                <button type="button" class="button" onclick="demoNoDissmiss();">Undismissible</button>
+            </article>
+
+            <article id="tryit" class="section">
+                <h2 class="section-title">Try it Yourself!</h2>
+
+                <p>
+                    Use this form to create your own custom Snackbar using the options above.
+                </p>
+
+                <form>
+                    <div class="field">
+                        <label>Message</label>
+                        <input id=demo_text type=text value="Hello World!" />
+                    </div>
+
+
+
+                    <div class="field">
+                        <label>Status</label>
+                        <select id="demo_status">
+                            <option value="" selected>Default</option>
+                            <option value=error>Error</option>
+                            <option value=success>Success</option>
+                            <option value=warning>Warning</option>
+                            <option value=info>Info</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label>Timeout</label>
+                        <input id=demo_timeout type=number min=0 value=5000 />
+                        <div style="text-align: right;">
+
+                        </div>
+
+                    </div>
+
+                    <div class="field">
+                        <label for=demo_dismiss>
+                            <input type=checkbox id=demo_dismiss name=demo_dismiss checked />
+                            Dissimissible
+                        </label>
+
+                        <label for="demo_notimeout">
+                            <input type="checkbox" id=demo_notimeout name=demo_notimeout />No Timeout
+                        </label>
+                    </div>
+
+                    <button type=button class="button" onclick="return demoCustom();">Snackbar!</button>
+                </form>
+
+            </article>
+
+
+            <article id="Actions" class="section">
+                <h2 class="section-title">Actions</h2>
+
+                <p>
+                    Buttons can be added to snackbars to allow for additional actions.
+                    This can be useful in scenarios where a snackbar may warrant additional user interaction (ie an undo button).
+                    Actions can also be configured to close the snackbar.
+                </p>
+
+                <button type="button" class="button" onclick="demoActions();">Basic Action</button>
+                <button type="button" class="button" onclick="demoClosing();">Closing Action</button>
+                <button type="button" class="button" onclick="demoActionsClosing();">Closing Action with Custom
+                    Function</button>
+
+                <script>
+                    var demoActions = function () {
+                        console.debug("Testing Actions");
+
+                        var message = SnackBar({
+                            message: "Click the button for an action",
+                            timeout: 30000,
+                            actions: [
+                                {
+                                    text: "Click Me!",
+                                    function: function () {
+                                        alert("A-C-T-I-O-N");
+                                    }
+                                }
+                            ]
+                        })
+                    }
+
+                    var demoClosing = function () {
+                        console.debug("Testing Closing Action");
+
+                        var message = SnackBar({
+                            message: "Click the button to close",
+                            timeout: 30000,
+                            actions: [
+                                {
+                                    text: "Close",
+                                    dissmiss: true
+                                }
+                            ]
+                        })
+                    }
+
+                    var demoActionsClosing = function () {
+                        console.debug("Testing Actions and Closing");
+
+                        var message = SnackBar({
+                            message: "Click the button!",
+                            timeout: 30000,
+                            actions: [
+                                {
+                                    text: "I close and act!",
+                                    dissmiss: true,
+                                    function: function () {
+                                        alert("You've done an action and closed. The snackbar will disappear once you press OK");
+                                    }
+                                }
+                            ]
+                        })
+                    }
+                </script>
+            </article>
+
+
+            <article id="Containers" class="section">
+                <h2 class="section-title">Containers</h2>
+
+                <p>
+                    By default, the snackbars will appear in the <strong>body</strong> tag.
+                    However, in some layouts, it may be more desirable for them to appear within an inner container.
+                </p>
+
+                <p>
+                    <em>Note: This requires the containing element to have a non-static position (e.g. position: relative;)</em>
+                </p>
+
+                <button type="button" class="button" onclick="demoContainer();">Within the Box</button>
+
+                <div id="container" class="box">
+
+                </div>
+
+                <script>
+                    var demoContainer = function () {
+                        new SnackBar({
+                            message: "I'm inside this box",
+                            container: "container"
+                        })
+                    }
+                </script>
+            </article>
+        </section>
     </div>
+
+
 
     <script src="js/js-snackbar.js?v=1.1.0"></script>
     <script src="site.js?v=1.0.0"></script>
     <script>
-        var success = function () {
-            console.debug("testing success");
-            var message = SnackBar({
-                message: "Snackbar created successfully!",
-                status: "success"
-            });
-        };
-
-        var def = function () {
-            let def = SnackBar({
-                message: "Hello World!"
-            })
-        };
-
-        var demoError = function () {
-            let demoErrElem = SnackBar({
-                message: "Could not do the thing!",
-                status: "danger"
-            })
-        }
-
-        var demoWarning = function () {
-            SnackBar({
-                message: "Alert! Something is happening that you may not expect!",
-                status: "warning"
-            })
-        }
-
-        var demoInfo = function () {
-            SnackBar({
-                message: "Here's some information for you",
-                status: "info"
-            })
-        }
-
+ 
         var demoTimeout = function () {
             SnackBar({
                 message: "I hang out for a little longer",
