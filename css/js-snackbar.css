@@ -10,6 +10,10 @@
     overflow: hidden;
 }
 
+.js-snackbar-container--fixed {
+    position: fixed;
+}
+
 .js-snackbar-container * {
     box-sizing: border-box;
 }

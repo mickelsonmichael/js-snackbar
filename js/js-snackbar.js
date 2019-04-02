@@ -13,7 +13,8 @@ function SnackBar(userOptions) {
         dismissible: true,
         timeout: 5000,
         status: "",
-        actions: []
+        actions: [],
+        fixed: false
     }
     var _Options = _OptionDefaults;
 
@@ -44,8 +45,20 @@ function SnackBar(userOptions) {
             _Container = document.createElement("div");
             _Container.classList.add("js-snackbar-container");
 
+            if(_Options.fixed) {
+                _Container.classList.add("js-snackbar-container--fixed");
+            }
+
             _Parent.appendChild(_Container);
         }
+
+        if (_Options.fixed) {
+            _Container.classList.add("js-snackbar-container--fixed");
+        }
+        else {
+            _Container.classList.remove("js-snackbar-container--fixed");
+        }
+
 
         _Element = document.createElement("div");
         _Element.classList.add("js-snackbar__wrapper");
@@ -205,6 +218,10 @@ function SnackBar(userOptions) {
 
         if (userOptions.container !== undefined && (typeof userOptions.container === "string" || typeof userOptions.container === "object")) {
             _Options.container = userOptions.container;
+        }
+
+        if (userOptions.fixed !== undefined) {
+            _Options.fixed = userOptions.fixed;
         }
     }
 
