@@ -50,11 +50,17 @@
                 </li>
 
                 <li class="nav-li">
+                    <a href="#Positioning" class="nav-a">
+                        Positioning
+                    </a>
+                </li>
+
+                <li class="nav-li">
                     <a href="#Fixed" class="nav-a">
                         Fixed Position
                     </a>
                 </li>
-
+               
                 <li class="nav-li">
                     <a href="#tryit" class="nav-a">
                         Try it Yourself
@@ -184,6 +190,40 @@
                 <button type="button" class="button" onclick="demoNoDissmiss();">Undismissible</button>
             </article>
 
+            <article id="Positioning" class="section">
+                <h2 class="section-title">Positioning</h2>
+
+                <p>
+                    By default, the Snackbar will appear in the bottom-right corner of the container.
+                    This can be changed by setting the <strong>position</strong> option to either "tr", "tl", "bl", or "br" while creating the SnackBar.
+                </p>
+
+                <p>
+                    Snackbars can appear in multiple positions simultaneously without interfering with one another
+                </p>
+
+                <pre>
+var snack = new SnackBar({
+    position: "br"
+});
+                </pre>
+
+                <button type=button class="button" onclick="demoPosition('tl');">Top-Left</button>
+                <button type=button class="button" onclick="demoPosition('tr');">Top-Right</button>
+                <button type=button class="button" onclick="demoPosition('bl');">Bottom-Left</button>
+                <button type=button class="button" onclick="demoPosition('br');">Bottom-Right</button>
+                
+
+                <script>
+                    var demoPosition = function(pos) {
+                        var snack = SnackBar({
+                            position: pos,
+                            message: "I should be in the '" + pos + "' corner!"
+                        });
+                    }
+                </script>
+            </article>
+
             <article id="Fixed" class="section">
                 <h2 class="section-title">Fixed Positioning</h2>
 
@@ -236,6 +276,16 @@
 
                         </div>
 
+                    </div>
+                    
+                    <div class="field">
+                        <label>Position</label>
+                        <select id="demo_pos">
+                            <option selected value="br">Bottom-Right</option>
+                            <option value="tr">Top-Right</option>
+                            <option value="bl">Bottom-Left</option>
+                            <option value="tl">Top-Left</option>
+                        </select>
                     </div>
 
                     <div class="field">
@@ -353,10 +403,6 @@
         </section>
     </div>
 
-
-
-    <script src="js/js-snackbar.js?v=1.1.0"></script>
-    <script src="site.js?v=1.0.0"></script>
     <script>
  
         var demoTimeout = function () {
@@ -391,12 +437,16 @@
                 message: document.getElementById("demo_text").value,
                 dismissible: document.getElementById("demo_dismiss").checked,
                 status: document.getElementById("demo_status").value,
-                timeout: timeout
+                timeout: timeout,
+                position: document.getElementById("demo_pos").value
             });
 
             return false;
         }
     </script>
+
+    <script src="js/js-snackbar.js?v=1.2.0"></script>
+    <script src="site.js?v=1.0.0"></script>
 </body>
 
 </html>

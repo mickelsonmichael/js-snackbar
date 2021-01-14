@@ -14,7 +14,8 @@ function SnackBar(userOptions) {
         timeout: 5000,
         status: "",
         actions: [],
-        fixed: false
+        fixed: false,
+        position: "br"
     }
     var _Options = _OptionDefaults;
 
@@ -59,6 +60,8 @@ function SnackBar(userOptions) {
             _Container.classList.remove("js-snackbar-container--fixed");
         }
 
+        // Apply the positioning class
+        _Container.classList.add(getPositionClass());
 
         _Element = document.createElement("div");
         _Element.classList.add("js-snackbar__wrapper");
@@ -223,6 +226,8 @@ function SnackBar(userOptions) {
         if (userOptions.fixed !== undefined) {
             _Options.fixed = userOptions.fixed;
         }
+
+        _Options.position = userOptions.position ?? _OptionDefaults.position;
     }
 
 
@@ -231,16 +236,22 @@ function SnackBar(userOptions) {
         var htmlCollection = target.children;
         var node = null;
         var i = 0;
+        var positionClass = getPositionClass();
 
         for (i = 0; i < htmlCollection.length; i++) {
             node = htmlCollection.item(i);
 
-            if (node.nodeType === 1 && node.classList.length > 0 && node.classList.contains("js-snackbar-container")) {
+            if (node.nodeType === 1
+                && node.classList.length > 0
+                && node.classList.contains("js-snackbar-container")
+                && node.classList.contains(positionClass)) {
                 return node;
             }
         }
 
         return null;
+
+        
     }
 
     this.Open = function() {
@@ -282,6 +293,21 @@ function SnackBar(userOptions) {
             _Container.removeChild(_Element);
         }, 1000);
     };
+
+    this.getPositionClass = function() {
+        console.log(_Options.position)
+        switch(_Options.position)
+        {
+            case "bl":
+                return "js-snackbar-container--bottom-left";
+            case "tl":
+                return "js-snackbar-container--top-left";
+            case "tr":
+                return "js-snackbar-container--top-right";
+            default:
+                return "js-snackbar-container--bottom-right";
+        }
+    }
 
     _ConfigureDefaults();
     _Create();

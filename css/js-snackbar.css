@@ -7,7 +7,29 @@
     align-items: flex-end;
     max-width: 100%;
     padding: 10px;
+    z-index: 999;
     overflow: hidden;
+}
+
+.js-snackbar-container--top-left {
+    bottom: unset;
+    right: unset;
+    top: 0;
+    left: 0;
+}
+
+.js-snackbar-container--top-right {
+    bottom: unset;
+    right: 0;
+    left: unset;
+    top: 0;
+}
+
+.js-snackbar-container--bottom-left {
+    bottom: 0;
+    right: unset;
+    left: 0;
+    top: unset;
 }
 
 .js-snackbar-container--fixed {
