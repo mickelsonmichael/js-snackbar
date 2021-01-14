@@ -133,7 +133,6 @@
 
                 <script>
                            var success = function () {
-                                console.debug("testing success");
                                 var message = SnackBar({
                                     message: "Snackbar created successfully!",
                                     status: "success"
@@ -321,8 +320,6 @@ var snack = new SnackBar({
 
                 <script>
                     var demoActions = function () {
-                        console.debug("Testing Actions");
-
                         var message = SnackBar({
                             message: "Click the button for an action",
                             timeout: 30000,
@@ -338,30 +335,26 @@ var snack = new SnackBar({
                     }
 
                     var demoClosing = function () {
-                        console.debug("Testing Closing Action");
-
                         var message = SnackBar({
                             message: "Click the button to close",
                             timeout: 30000,
                             actions: [
                                 {
                                     text: "Close",
-                                    dissmiss: true
+                                    dismiss: true
                                 }
                             ]
                         })
                     }
 
                     var demoActionsClosing = function () {
-                        console.debug("Testing Actions and Closing");
-
                         var message = SnackBar({
                             message: "Click the button!",
                             timeout: 30000,
                             actions: [
                                 {
                                     text: "I close and act!",
-                                    dissmiss: true,
+                                    dismiss: true,
                                     function: function () {
                                         alert("You've done an action and closed. The snackbar will disappear once you press OK");
                                     }
