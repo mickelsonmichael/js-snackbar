@@ -227,7 +227,7 @@ function SnackBar(userOptions) {
             _Options.fixed = userOptions.fixed;
         }
 
-        _Options.position = userOptions.position ?? _OptionDefaults.position;
+        _Options.position = userOptions.position ? _userOptions.position : _OptionDefaults.position;
     }
 
 
