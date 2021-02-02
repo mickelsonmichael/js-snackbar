@@ -1,0 +1,34 @@
+{
+  "name": "js-snackbar",
+  "version": "2.0.0",
+  "description": "A Snackbar (Toast) written in pure Javascript (no jQuery)",
+  "main": "src/snackbar.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mickelsonmichael/js-snackbar.git"
+  },
+  "scripts": {
+    "build-js": "babel --out-file dist/js-snackbar.js js/js-snackbar.js",
+    "minify-js": "babel --minified --out-file dist/js-snackbar.min.js js/js-snackbar.js",
+    "minify-css": "css-minify --file css/js-snackbar.css --output dist",
+    "build": "npm run build-js && npm run minify-js"
+  },
+  "keywords": [
+    "snackbar",
+    "toast",
+    "notification",
+    "notifications"
+  ],
+  "author": "Michael Mickelson <mickelsonmichael@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mickelsonmichael/js-snackbar/issues"
+  },
+  "homepage": "https://github.com/mickelsonmichael/js-snackbar#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "css-minify": "^1.1.0"
+  }
+}
