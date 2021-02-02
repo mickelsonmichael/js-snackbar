@@ -44,6 +44,10 @@
                 </li>
 
                 <li class="nav-li">
+                    <a href="#message" class="nav-a">Content</a>
+                </li>
+
+                <li class="nav-li">
                     <a href="#Timeout" class="nav-a">
                         Timeout
                     </a>
@@ -115,6 +119,58 @@
                     You can read more about those differences on the <a href="https://github.com/mickelsonmichael/js-snackbar" target="_blank">GitHub</a> page.
                 </p>
             </article>
+
+            <article id="message" class="section">
+                <h2 class="section-title">Message Content</h2>
+            
+                <p>
+                    The most basic option, and probably the one that will be used with every SnackBar.
+                    By default, the snackbar will display the message <em>"Operation performed successfully"</em>.
+                    Messages should be short and descriptive;
+                    If your message expands to a second line, it is probably too long.
+                </p>
+            
+                <pre>
+SnackBar({
+    message: "Hi there"
+})
+                </pre>
+            
+                <button type=button class="button" onclick="demoContent();">Send Ping</button>
+            
+                <p>
+                    The message can be any HTML string, but it is best to keep the HTML simple, using tags like
+                    &lt;em&gt; and &lt;strong&gt; to provide emphasis. For links, you should utilize the
+                    [Actions](#Actions) instead, to provide a pre-formatted link.
+                </p>
+
+                <pre>
+SnackBar({
+    message: "Do &lt;em&gt;NOT&lt;/em&gt; do that again"
+})
+                </pre>
+
+                <button type="button" class="button" onclick="demoHtml();">Don't Click Me</button>
+
+                <p>
+                    <small>Don't listen to the button above, just click it</small>
+                </p>
+
+                <script>
+                    var demoContent = function () {
+                        var message = SnackBar({
+                            message: "PONG"
+                        });
+                    }
+
+                    var demoHtml = function() {
+                        SnackBar({
+                            message: "I told you <strong>not</strong> to click it"
+                        })
+                    }
+                </script>
+            </article>
+
 
             <article id="Colors" class="section">
                 <h2 class="section-title">Context Colors</h2>

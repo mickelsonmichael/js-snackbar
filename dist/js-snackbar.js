@@ -151,7 +151,7 @@ function SnackBar(userOptions) {
     function insertMessageTo(element) {
       var message = document.createElement("span");
       message.classList.add("js-snackbar__message");
-      message.textContent = _Options.message;
+      message.innerHTML = _Options.message;
       element.appendChild(message);
     }
 
