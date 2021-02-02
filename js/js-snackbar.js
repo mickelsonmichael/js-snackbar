@@ -227,7 +227,7 @@ function SnackBar(userOptions) {
             _Options.fixed = userOptions.fixed;
         }
 
-        _Options.position = userOptions.position ? _userOptions.position : _OptionDefaults.position;
+        _Options.position = userOptions.position ? userOptions.position : _OptionDefaults.position;
     }
 
 
@@ -295,7 +295,6 @@ function SnackBar(userOptions) {
     };
 
     this.getPositionClass = function() {
-        console.log(_Options.position)
         switch(_Options.position)
         {
             case "bl":
