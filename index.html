@@ -13,7 +13,7 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/js-snackbar.css?v=2.0.0" />
+    <link rel="stylesheet" href="dist/js-snackbar.css?v=1.0.0" />
     <link rel="stylesheet" href="site.css?v=1.0.0" />
 </head>
 
@@ -44,8 +44,12 @@
                 </li>
 
                 <li class="nav-li">
-                    <a href="#Options" class="nav-a">
-                        Timeout Options
+                    <a href="#message" class="nav-a">Content</a>
+                </li>
+
+                <li class="nav-li">
+                    <a href="#Timeout" class="nav-a">
+                        Timeout
                     </a>
                 </li>
 
@@ -116,6 +120,57 @@
                 </p>
             </article>
 
+            <article id="message" class="section">
+                <h2 class="section-title">Message Content</h2>
+            
+                <p>
+                    The most basic option, and probably the one that will be used with every SnackBar.
+                    By default, the snackbar will display the message <em>"Operation performed successfully"</em>.
+                    Messages should be short and descriptive;
+                    If your message expands to a second line, it is probably too long.
+                </p>
+            
+                <pre>
+SnackBar({
+    message: "Hi there"
+})
+                </pre>
+            
+                <button type=button class="button" onclick="demoContent();">Send Ping</button>
+            
+                <p>
+                    The message can be any HTML string, but it is best to keep the HTML simple, using tags like
+                    &lt;em&gt; and &lt;strong&gt; to provide emphasis. For links, you should utilize the
+                    [Actions](#Actions) instead, to provide a pre-formatted link.
+                </p>
+
+                <pre>
+SnackBar({
+    message: "Do &lt;em&gt;NOT&lt;/em&gt; do that again"
+})
+                </pre>
+
+                <button type="button" class="button" onclick="demoHtml();">Don't Click Me</button>
+
+                <p>
+                    <small>Don't listen to the button above, just click it</small>
+                </p>
+
+                <script>
+                    var demoContent = function () {
+                        var message = SnackBar({
+                            message: "PONG"
+                        });
+                    }
+
+                    var demoHtml = function() {
+                        SnackBar({
+                            message: "I told you <strong>not</strong> to click it"
+                        })
+                    }
+                </script>
+            </article>
+
 
             <article id="Colors" class="section">
                 <h2 class="section-title">Context Colors</h2>
@@ -125,6 +180,12 @@
                     When a notification is displayed, it can either have one of these context colors attached to it, or no indicator at all (Default).
                 </p>
 
+                <pre>
+Snackbar({
+    status: "success"
+});
+                </pre>
+
                 <button type="button" class="button" onclick="def();">Default</button>
                 <button type="button" class="button" onclick="success();">Success</button>
                 <button type="button" class="button" onclick="demoError();">Error</button>
@@ -133,7 +194,6 @@
 
                 <script>
                            var success = function () {
-                                console.debug("testing success");
                                 var message = SnackBar({
                                     message: "Snackbar created successfully!",
                                     status: "success"
@@ -170,8 +230,7 @@
                 </script>
             </article>
 
-
-            <article id="Options" class="section">
+            <article id="Timeout" class="section">
                 <h2 class="section-title">Timeout Options</h2>
 
                 <p>
@@ -185,9 +244,38 @@
                     This is useful in scenarios where a message is of particular importance, or where the message has a custom close action.
                 </p>
 
+                <pre>
+SnackBar({
+    timeout: 5000
+})
+                </pre>
+
                 <button type="button" class="button" onclick="demoTimeout();">Timeout Duration</button>
                 <button type="button" class="button" onclick="demoNoTimeout();">No Timeout</button>
                 <button type="button" class="button" onclick="demoNoDissmiss();">Undismissible</button>
+
+                <script>
+                        var demoTimeout = function () {
+                            SnackBar({
+                                message: "I hang out for a little longer",
+                                timeout: 25000
+                            })
+                        }
+
+                        var demoNoTimeout = function () {
+                            SnackBar({
+                                message: "You need to manually send me away",
+                                timeout: false
+                            })
+                        }
+
+                        var demoNoDissmiss = function () {
+                            SnackBar({
+                                message: "You cannot send me away!",
+                                dismissible: false
+                            })
+                        }
+                </script>
             </article>
 
             <article id="Positioning" class="section">
@@ -203,7 +291,7 @@
                 </p>
 
                 <pre>
-var snack = new SnackBar({
+SnackBar({
     position: "br"
 });
                 </pre>
@@ -231,6 +319,12 @@ var snack = new SnackBar({
                     If your page's body scrolls as the page resizes, it may be necessary to use the <pre>fixed</pre> option.
                     By default the snackbars have absolute positioning and will stay within the container they are created in, but setting <pre>fixed: true</pre> will keep them at the bottom-right of the screen.
                 </p>
+
+                <pre>
+SnackBar({
+    fixed: true
+})
+                </pre>
 
                 <button type=button class="button" onclick="demoFixed();">Fixed Position</button>
 
@@ -302,6 +396,26 @@ var snack = new SnackBar({
                     <button type=button class="button" onclick="return demoCustom();">Snackbar!</button>
                 </form>
 
+                <script>
+
+                    function demoCustom() {
+                        let timeout = document.getElementById("demo_timeout").value;
+
+                        if (document.getElementById("demo_notimeout").checked) {
+                            timeout = false;
+                        }
+
+                        SnackBar({
+                            message: document.getElementById("demo_text").value,
+                            dismissible: document.getElementById("demo_dismiss").checked,
+                            status: document.getElementById("demo_status").value,
+                            timeout: timeout,
+                            position: document.getElementById("demo_pos").value
+                        });
+
+                        return false;
+                    }
+                </script>
             </article>
 
 
@@ -321,8 +435,6 @@ var snack = new SnackBar({
 
                 <script>
                     var demoActions = function () {
-                        console.debug("Testing Actions");
-
                         var message = SnackBar({
                             message: "Click the button for an action",
                             timeout: 30000,
@@ -338,30 +450,26 @@ var snack = new SnackBar({
                     }
 
                     var demoClosing = function () {
-                        console.debug("Testing Closing Action");
-
                         var message = SnackBar({
                             message: "Click the button to close",
                             timeout: 30000,
                             actions: [
                                 {
                                     text: "Close",
-                                    dissmiss: true
+                                    dismiss: true
                                 }
                             ]
                         })
                     }
 
                     var demoActionsClosing = function () {
-                        console.debug("Testing Actions and Closing");
-
                         var message = SnackBar({
                             message: "Click the button!",
                             timeout: 30000,
                             actions: [
                                 {
                                     text: "I close and act!",
-                                    dissmiss: true,
+                                    dismiss: true,
                                     function: function () {
                                         alert("You've done an action and closed. The snackbar will disappear once you press OK");
                                     }
@@ -371,7 +479,6 @@ var snack = new SnackBar({
                     }
                 </script>
             </article>
-
 
             <article id="Containers" class="section">
                 <h2 class="section-title">Containers</h2>
@@ -403,49 +510,9 @@ var snack = new SnackBar({
         </section>
     </div>
 
-    <script>
- 
-        var demoTimeout = function () {
-            SnackBar({
-                message: "I hang out for a little longer",
-                timeout: 25000
-            })
-        }
+    
 
-        var demoNoTimeout = function () {
-            SnackBar({
-                message: "You need to manually send me away",
-                timeout: false
-            })
-        }
-
-        var demoNoDissmiss = function () {
-            SnackBar({
-                message: "You cannot send me away!",
-                dismissible: false
-            })
-        }
-
-        function demoCustom() {
-            let timeout = document.getElementById("demo_timeout").value;
-
-            if (document.getElementById("demo_notimeout").checked) {
-                timeout = false;
-            }
-
-            SnackBar({
-                message: document.getElementById("demo_text").value,
-                dismissible: document.getElementById("demo_dismiss").checked,
-                status: document.getElementById("demo_status").value,
-                timeout: timeout,
-                position: document.getElementById("demo_pos").value
-            });
-
-            return false;
-        }
-    </script>
-
-    <script src="js/js-snackbar.js?v=1.2.0"></script>
+    <script src="dist/js-snackbar.js?v=1.1.0"></script>
     <script src="site.js?v=1.0.0"></script>
 </body>
 
