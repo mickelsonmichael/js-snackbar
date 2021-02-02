@@ -8,10 +8,11 @@
     "url": "git+https://github.com/mickelsonmichael/js-snackbar.git"
   },
   "scripts": {
-    "build-js": "babel --out-file dist/js-snackbar.js js/js-snackbar.js",
-    "minify-js": "babel --minified --out-file dist/js-snackbar.min.js js/js-snackbar.js",
-    "minify-css": "css-minify --file css/js-snackbar.css --output dist",
-    "build": "npm run build-js && npm run minify-js"
+    "build-js": "babel --out-file dist/js-snackbar.js src/js-snackbar.js",
+    "minify-js": "babel --minified --out-file dist/js-snackbar.min.js src/js-snackbar.js",
+    "build-css": "ncp src/js-snackbar.css dist/js-snackbar.css",
+    "minify-css": "postcss --use cssnano -o dist/js-snackbar.min.css src/js-snackbar.css",
+    "build": "npm run build-js && npm run minify-js && npm run build-css && npm run minify-css"
   },
   "keywords": [
     "snackbar",
@@ -29,6 +30,10 @@
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
-    "css-minify": "^1.1.0"
+    "css-minify": "^1.1.0",
+    "cssnano": "^4.1.10",
+    "ncp": "^2.0.0",
+    "postcss": "^8.2.4",
+    "postcss-cli": "^8.3.1"
   }
 }

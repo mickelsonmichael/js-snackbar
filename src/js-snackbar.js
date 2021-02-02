@@ -31,13 +31,11 @@
     }
 
     function _setContainer() {
-        var target = typeof _Options.container === "object"
-            ? _Options.container
-            : document.getElementById(_Options.container);
+        var target = getOrFindContainer();
 
         if (target === undefined) {
-            console.error("SnackBar: Could not find target container " + _Options.container);
-            target = document.body;
+            console.warn("SnackBar: Could not find target container " + _Options.container);
+            target = document.body; // default to the body as the container
         }
 
         _Container = getOrAddContainerIn(target);
@@ -72,6 +70,12 @@
             target.appendChild(container);
             return container;
         }
+
+        function getOrFindContainer() {
+            return typeof _Options.container === "object"
+                ? _Options.container
+                : document.getElementById(_Options.container);
+        }
     }
 
     function _applyPositionClasses() {
@@ -88,24 +92,37 @@
     }
 
     function _createMessage() {
-        var outerElement = document.createElement("div");
-        outerElement.classList.add("js-snackbar__wrapper");
-        outerElement.style.height = "0px";
-        outerElement.style.opacity = "0";
-        outerElement.style.marginTop = "0px";
-        outerElement.style.marginBottom = "0px";
+        var outerElement = createWrapper();
 
-        var innerSnack = document.createElement("div");
-        innerSnack.classList.add("js-snackbar", "js-snackbar--show");
-    
-        applyColorTo(innerSnack);
-        insertMessageTo(innerSnack);
-        addActionsTo(innerSnack);
-        addDismissButtonTo(innerSnack);
+        var innerSnack = createInnerSnackbar();
 
         outerElement.appendChild(innerSnack);
 
         return outerElement;
+
+        function createWrapper() {
+            var outerElement = document.createElement("div");
+
+            outerElement.classList.add("js-snackbar__wrapper");
+            outerElement.style.height = "0px";
+            outerElement.style.opacity = "0";
+            outerElement.style.marginTop = "0px";
+            outerElement.style.marginBottom = "0px";
+
+            return outerElement;
+        }
+
+        function createInnerSnackbar() {
+            var innerSnack = document.createElement("div");
+            innerSnack.classList.add("js-snackbar", "js-snackbar--show");
+
+            applyColorTo(innerSnack);
+            insertMessageTo(innerSnack);
+            addActionsTo(innerSnack);
+            addDismissButtonTo(innerSnack);
+
+            return innerSnack;
+        }
 
         function applyColorTo(element) {
             if (!_Options.status) return;
