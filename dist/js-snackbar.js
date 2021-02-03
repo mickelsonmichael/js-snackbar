@@ -28,7 +28,7 @@ function SnackBar(userOptions) {
       message: userOptions?.message ?? "Operation performed successfully.",
       dismissible: userOptions?.dismissible ?? true,
       timeout: userOptions?.timeout ?? 5000,
-      status: userOptions?.status !== undefined ? userOptions.status.toLowerCase().trim() : "",
+      status: userOptions?.status ? userOptions.status.toLowerCase().trim() : "",
       actions: userOptions?.actions ?? [],
       fixed: userOptions?.fixed ?? false,
       position: userOptions?.position ?? "br",
