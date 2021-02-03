@@ -213,9 +213,14 @@ header h1 {
 }
 
 code {
-    background-color: #ddd;
+    background-color: #eee;
     padding: 0.1rem 0.5rem;
     border-radius: 3px;
+}
+
+code[block] {
+    display: block;
+    white-space: pre;
 }
 
 table {

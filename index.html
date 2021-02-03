@@ -70,12 +70,6 @@
                 </li>
                
                 <li class="nav-li">
-                    <a href="#tryit" class="nav-a">
-                        Try it Yourself
-                    </a>
-                </li>
-
-                <li class="nav-li">
                     <a href="#Actions" class="nav-a">
                         Actions
                     </a>
@@ -86,10 +80,16 @@
                         Containers
                     </a>
                 </li>
+
+                <li class="nav-li">
+                    <a href="#tryit" class="nav-a">
+                        Try it Yourself
+                    </a>
+                </li>
             </ul>
 
             <p class="nav-footer">
-                Created by <a href="https://github.com/mickelsonmichael" target="_blank">mickelsonmichael</a>
+                Created by <a href="https://github.com/mickelsonmichael" target="_blank">Michael Mickelson</a>
                 <br />
                 <a href="https://github.com/mickelsonmichael/js-snackbar/blob/master/LICENSE" target="_blank">MIT
                     License</a>
@@ -130,11 +130,9 @@
                     If your message expands to a second line, it is probably too long.
                 </p>
             
-                <pre>
-SnackBar({
+                <code block>SnackBar({
     message: "Hi there"
-})
-                </pre>
+})</code>
             
                 <button type=button class="button" onclick="demoContent();">Send Ping</button>
             
@@ -144,11 +142,9 @@ SnackBar({
                     <a href="#Actions">actions</a> instead, to provide a pre-formatted link.
                 </p>
 
-                <pre>
-SnackBar({
+                <code block>SnackBar({
     message: "Do &lt;em&gt;NOT&lt;/em&gt; do that again"
-})
-                </pre>
+})</code>
 
                 <button type="button" class="button" onclick="demoHtml();">Don't Click Me</button>
 
@@ -181,11 +177,9 @@ SnackBar({
                     The width can be set to any valid CSS value for the width property.
                 </p>
 
-                <pre>
-SnackBar({
+                <code block>SnackBar({
     width: "1000px"
-})
-                </pre>
+})</code>
 
                 <p>
                     <strong>
@@ -240,11 +234,9 @@ SnackBar({
                     When a notification is displayed, it can either have one of these context colors attached to it, or no indicator at all (the default behavior). Click one of the buttons below to view an example.
                 </p>
 
-                <pre>
-Snackbar({
+                <code block>Snackbar({
     status: "success"
-});
-                </pre>
+})</code>
 
                 <button type="button" class="button" onclick="colors_Default();">Default</button>
                 <button type="button" class="button" onclick="colors_Success();">Success</button>
@@ -401,11 +393,9 @@ Snackbar({
                     <strong>In general, the timeout should be no shorter than 4 seconds long.</strong>
                 </p>
 
-                <pre>
-SnackBar({
+                <code block>SnackBar({
     timeout: 5000 // ms
-})
-                </pre>
+})</code>
 
                 <p>
                     Additionally, a SnackBar can also be configured to hide its close button.
@@ -413,19 +403,16 @@ SnackBar({
                     <a href="#Actions">action</a>.
                 </p>
 
-                <pre>
-SnackBar({
+                <code block>SnackBar({
     dismissible: false
-})
-                </pre>
+})</code>
 
                 <p>
                     If you don't want to the SnackBar to timeout and instead want the user to manually intervene,
                     you can set the timeout to any value less than 1 or false
                 </p>
 
-                <pre>
-SnackBar({
+                <code block>SnackBar({
     timeout: 0 // less than or equal to 0
 })
 
@@ -433,8 +420,7 @@ SnackBar({
 
 SnackBar({
     timeout: false
-})
-                </pre>
+})</code>
 
                 <button type="button" class="button" onclick="demoTimeout();">Timeout Duration</button>
                 <button type="button" class="button" onclick="demoNoTimeout();">No Timeout</button>
@@ -504,11 +490,9 @@ SnackBar({
                     but it is best to avoid changing the position of your SnackBar.
                 </p>
 
-                <pre>
-SnackBar({
+                <code block>SnackBar({
     position: "br"
-});
-                </pre>
+});</code>
 
                 <button type=button class="button" onclick="demoPosition('tl');">Top-Left</button>
                 <button type=button class="button" onclick="demoPosition('tr');">Top-Right</button>
@@ -534,11 +518,9 @@ SnackBar({
                     By default the SnackBars have absolute positioning and will stay within the container they are created in, but setting <code>fixed: true</code> will keep them in the corner of the screen.
                 </p>
 
-                <pre>
-SnackBar({
+                <code block>SnackBar({
     fixed: true
-})
-                </pre>
+})</code>
 
                 <button type=button class="button" onclick="demoFixed();">Fixed Position</button>
 
