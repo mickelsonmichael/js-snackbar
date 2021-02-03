@@ -236,17 +236,41 @@ Snackbar({
                 <p>
                     A snackbar can be configured to stay on screen for a certain amount of time.
                     For warnings or messages with actions, it is best to increase this time.
-                    In general, the timeout should be no shorter than 4 seconds long.
-                </p>
-
-                <p>
-                    Additionally, JS-Snackbar can also be configured to hide it's close button.
-                    This is useful in scenarios where a message is of particular importance, or where the message has a custom close action.
+                    <strong>In general, the timeout should be no shorter than 4 seconds long.</strong>
                 </p>
 
                 <pre>
 SnackBar({
-    timeout: 5000
+    timeout: 5000 // ms
+})
+                </pre>
+
+                <p>
+                    Additionally, a SnackBar can also be configured to hide its close button.
+                    This is useful in scenarios where a message is particularly important, or where the message has a custom close 
+                    <a href="#Actions">action</a>.
+                </p>
+
+                <pre>
+SnackBar({
+    dismissible: false
+})
+                </pre>
+
+                <p>
+                    If you don't want to the SnackBar to timeout and instead want the user to manually intervene,
+                    you can set the timeout to any value less than 1 or false
+                </p>
+
+                <pre>
+SnackBar({
+    timeout: 0 // less than or equal to 0
+})
+
+// OR
+
+SnackBar({
+    timeout: false
 })
                 </pre>
 
