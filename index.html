@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="dist/js-snackbar.css?v=1.0.0" />
-    <link rel="stylesheet" href="site.css?v=1.0.0" />
+    <link rel="stylesheet" href="site.css?v=1.1" />
 </head>
 
 <body>
@@ -177,7 +177,7 @@ SnackBar({
 
                 <p>
                     By default, there are several color options for showing notifications.
-                    When a notification is displayed, it can either have one of these context colors attached to it, or no indicator at all (Default).
+                    When a notification is displayed, it can either have one of these context colors attached to it, or no indicator at all (the default behavior). Click one of the buttons below to view an example.
                 </p>
 
                 <pre>
@@ -186,46 +186,138 @@ Snackbar({
 });
                 </pre>
 
-                <button type="button" class="button" onclick="def();">Default</button>
-                <button type="button" class="button" onclick="success();">Success</button>
-                <button type="button" class="button" onclick="demoError();">Error</button>
-                <button type="button" class="button" onclick="demoWarning();">Warning</button>
-                <button type="button" class="button" onclick="demoInfo();">Info</button>
+                <button type="button" class="button" onclick="colors_Default();">Default</button>
+                <button type="button" class="button" onclick="colors_Success();">Success</button>
+                <button type="button" class="button" onclick="colors_Error();">Error</button>
+                <button type="button" class="button" onclick="colors_Warning();">Warning</button>
+                <button type="button" class="button" onclick="colors_Info();">Info</button>
+
+                <p>
+                    The possible options can be found in the table below
+                </p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Color</td>
+                            <td>Indicates</td>
+                            <td>Value(s)</td>
+                            <td>Example</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>None</td>
+                            <td>None</td>
+                            <td>
+                                <code>undefined</code>,
+                                <code>null</code>,
+                                <code>""</code>
+                            </td>
+                            <td>
+                                <span class="js-snackbar js-snackbar--show">
+                                    <span class="js-snackbar__status"></span>
+                                    <span class="js-snackbar__message">Default</span>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Green</td>
+                            <td>Success</td>
+                            <td>
+                                <code>"green"</code>,
+                                <code>"success"</code>
+                            </td>
+                            <td>
+                                <span class="js-snackbar js-snackbar--show">
+                                    <span class="js-snackbar__status js-snackbar--success"></span>
+                                    <span class="js-snackbar__message">Success</span>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Orange</td>
+                            <td>Warning</td>
+                            <td>
+                                <code>"warning"</code>,
+                                <code>"alert"</code>,
+                                <code>"orange"</code>
+                            </td>
+                            <td>
+                                <span class="js-snackbar js-snackbar--show">
+                                    <span class="js-snackbar__status js-snackbar--warning"></span>
+                                    <span class="js-snackbar__message">Warning</span>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Red</td>
+                            <td>Danger</td>
+                            <td>
+                                <code>"danger"</code>,
+                                <code>"error"</code>,
+                                <code>"red"</code>
+                            </td>
+                            <td>
+                                <span class="js-snackbar js-snackbar--show">
+                                    <span class="js-snackbar__status js-snackbar--danger"></span>
+                                    <span class="js-snackbar__message">Danger</span>
+                                </span>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Blue</td>
+                            <td>Info</td>
+                            <td>
+                                <code>"info"</code> or any other string
+                            </td>
+                            <td>
+                                <span class="js-snackbar js-snackbar--show">
+                                    <span class="js-snackbar__status js-snackbar--info"></span>
+                                    <span class="js-snackbar__message">Info</span>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
                 <script>
-                           var success = function () {
-                                var message = SnackBar({
-                                    message: "Snackbar created successfully!",
-                                    status: "success"
-                                });
-                            };
+                    var colors_Default = function () {
+                        SnackBar({
+                            message: "Hello World!"
+                        })
+                    };
 
-                            var def = function () {
-                                let def = SnackBar({
-                                    message: "Hello World!"
-                                })
-                            };
+                    var colors_Success = function () {
+                        SnackBar({
+                            message: "Snackbar created successfully!",
+                            status: "success"
+                        });
+                    };
 
-                            var demoError = function () {
-                                let demoErrElem = SnackBar({
-                                    message: "Could not do the thing!",
-                                    status: "danger"
-                                })
-                            }
+                    
 
-                            var demoWarning = function () {
-                                SnackBar({
-                                    message: "Alert! Something is happening that you may not expect!",
-                                    status: "warning"
-                                })
-                            }
+                    var colors_Error = function () {
+                        SnackBar({
+                            message: "Could not do the thing!",
+                            status: "danger"
+                        })
+                    }
 
-                            var demoInfo = function () {
-                                SnackBar({
-                                    message: "Here's some information for you",
-                                    status: "info"
-                                })
-                            }
+                    var colors_Warning = function () {
+                        SnackBar({
+                            message: "Alert! Something is happening that you may not expect!",
+                            status: "warning"
+                        })
+                    }
+
+                    var colors_Info = function () {
+                        SnackBar({
+                            message: "Here's some information for you",
+                            status: "info"
+                        })
+                    }
 
                 </script>
             </article>
@@ -534,9 +626,7 @@ SnackBar({
         </section>
     </div>
 
-    
-
-    <script src="dist/js-snackbar.js?v=1.1.0"></script>
+    <script src="dist/js-snackbar.js?v=1.2"></script>
     <script src="site.js?v=1.0.0"></script>
 </body>
 
