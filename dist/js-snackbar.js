@@ -18,7 +18,7 @@ function SnackBar(userOptions) {
 
     _Container.appendChild(_Element);
 
-    if (_Options.timeout !== false) {
+    if (_Options.timeout !== false && _Options.timeout > 0) {
       _Interval = setTimeout(_This.Close, _Options.timeout);
     }
   }
