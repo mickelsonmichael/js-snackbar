@@ -23,7 +23,7 @@ To customize a Snackbar, pass the function a JS object with any of the following
 | -------- | ------ | ------------- | ----- |
 |message|`string`|"Operation performed successfully."||
 |dismissible|`boolean`|_true_||
-|timeout|`number` or `boolean`|5000|Integer represents milliseconds. To specify no timeout, set the value to `false`|
+|timeout|`number` or `boolean`|5000|Integer represents milliseconds. To specify no timeout, set the value to `false` or any number less than or equal to `0`|
 |status|`string`|""|Possible statuses include "success", "green", "warning", "alert", "orange", "danger", "error", "red." All other values will default to the blue "info" status|
 |actions|`array`|[]|See [Actions](#actions)|
 |fixed|`boolean`|false| `true` indicates a `positioning:fixed;` be added to the container|
