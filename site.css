@@ -212,6 +212,36 @@ header h1 {
     margin: 1rem auto;
 }
 
+code {
+    background-color: #ddd;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    margin-bottom: 1rem;
+}
+
+table thead {
+    font-weight: 600;
+    background-color:  #75b3e6;
+    color: #eee;
+}
+
+table td {
+    padding: 0.25rem 0.5rem;
+}
+
+table tr:nth-child(even) {
+    background-color: #90bfe6;
+}
+
+.demo-message {
+    position: relative;
+}
+
 @media (min-width: 1000px) {
     #header-button {
         display: none;

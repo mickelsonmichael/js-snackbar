@@ -6,7 +6,6 @@
     flex-direction: column;
     align-items: flex-end;
     max-width: 100%;
-    padding: 10px;
     z-index: 999;
     overflow: hidden;
 }
@@ -43,10 +42,11 @@
 .js-snackbar__wrapper {
     overflow: hidden;
     height: auto;
-    margin: 5px 0;
+    margin: 0;
     transition: all ease .5s;
     border-radius: 3px;
-    box-shadow: 0 0 4px 0 black;
+    display: flex;
+    min-width: auto;
 }
 
 .js-snackbar {
@@ -57,16 +57,24 @@
     font-size: 16px;
     background-color: #262626;
     vertical-align: bottom;
+    box-shadow: 0 0 4px 0 black;
+    margin: 0 10px;
+    flex-grow: 1;
 }
 
 .js-snackbar__close,
 .js-snackbar__status,
-.js-snackbar__message {
+.js-snackbar__message-wrapper {
     position: relative;
 }
 
-.js-snackbar__message {
+.js-snackbar__message-wrapper {
+    flex: 1;
     padding: 12px;
+}
+
+.js-snackbar__message {
+    display: inline-block;
 }
 
 .js-snackbar__status {

@@ -7,6 +7,10 @@ function SnackBar(userOptions) {
 
   var _Container;
 
+  var _Message;
+
+  var _MessageWrapper;
+
   function _create() {
     _applyUserOptions();
 
@@ -18,7 +22,7 @@ function SnackBar(userOptions) {
 
     _Container.appendChild(_Element);
 
-    if (_Options.timeout !== false) {
+    if (_Options.timeout !== false && _Options.timeout > 0) {
       _Interval = setTimeout(_This.Close, _Options.timeout);
     }
   }
@@ -28,11 +32,12 @@ function SnackBar(userOptions) {
       message: userOptions?.message ?? "Operation performed successfully.",
       dismissible: userOptions?.dismissible ?? true,
       timeout: userOptions?.timeout ?? 5000,
-      status: userOptions?.status !== undefined ? userOptions.status.toLowerCase().trim() : "",
+      status: userOptions?.status ? userOptions.status.toLowerCase().trim() : "",
       actions: userOptions?.actions ?? [],
       fixed: userOptions?.fixed ?? false,
       position: userOptions?.position ?? "br",
-      container: userOptions?.container ?? document.body
+      container: userOptions?.container ?? document.body,
+      width: userOptions?.width
     };
   }
 
@@ -104,6 +109,7 @@ function SnackBar(userOptions) {
       outerElement.style.opacity = "0";
       outerElement.style.marginTop = "0px";
       outerElement.style.marginBottom = "0px";
+      setWidth(outerElement);
       return outerElement;
     }
 
@@ -149,10 +155,19 @@ function SnackBar(userOptions) {
     }
 
     function insertMessageTo(element) {
-      var message = document.createElement("span");
-      message.classList.add("js-snackbar__message");
-      message.innerHTML = _Options.message;
-      element.appendChild(message);
+      _MessageWrapper = document.createElement("div");
+
+      _MessageWrapper.classList.add("js-snackbar__message-wrapper");
+
+      _Message = document.createElement("span");
+
+      _Message.classList.add("js-snackbar__message");
+
+      _Message.innerHTML = _Options.message;
+
+      _MessageWrapper.appendChild(_Message);
+
+      element.appendChild(_MessageWrapper);
     }
 
     function addActionsTo(element) {
@@ -198,6 +213,11 @@ function SnackBar(userOptions) {
       closeButton.onclick = _This.Close;
       element.appendChild(closeButton);
     }
+
+    function setWidth(element) {
+      if (!_Options.width) return;
+      element.style.width = _Options.width;
+    }
   }
 
   function _getPositionClass() {
@@ -217,8 +237,7 @@ function SnackBar(userOptions) {
   }
 
   this.Open = function () {
-    var contentHeight = _Element.firstElementChild.scrollHeight; // get the height of the content
-
+    var contentHeight = getMessageHeight();
     _Element.style.height = contentHeight + "px";
     _Element.style.opacity = 1;
     _Element.style.marginTop = "5px";
@@ -229,6 +248,11 @@ function SnackBar(userOptions) {
 
       _Element.style.height = null;
     });
+
+    function getMessageHeight() {
+      const wrapperStyles = window.getComputedStyle(_MessageWrapper);
+      return _Message.scrollHeight + parseFloat(wrapperStyles.getPropertyValue('padding-top')) + parseFloat(wrapperStyles.getPropertyValue("padding-bottom"));
+    }
   };
 
   this.Close = function () {
