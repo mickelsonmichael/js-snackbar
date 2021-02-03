@@ -238,6 +238,10 @@ table tr:nth-child(even) {
     background-color: #90bfe6;
 }
 
+.demo-message {
+    position: relative;
+}
+
 @media (min-width: 1000px) {
     #header-button {
         display: none;

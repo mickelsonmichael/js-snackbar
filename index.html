@@ -48,6 +48,10 @@
                 </li>
 
                 <li class="nav-li">
+                    <a href="#width" class="nav-a">Width</a>
+                </li>
+
+                <li class="nav-li">
                     <a href="#Timeout" class="nav-a">
                         Timeout
                     </a>
@@ -92,11 +96,7 @@
             </p>
         </nav>
 
-
-
         <section class="content">
-
-
             <div class="display">
                 <span>JS-Snackbar</span>
             </div>
@@ -171,6 +171,66 @@ SnackBar({
                 </script>
             </article>
 
+            <article id="width" class="section">
+                <h2 class="section-title">Fixed Width</h2>
+
+                <p>
+                    The SnackBars will resize based on the content passed in to them.
+                    However it may be desirable for them to have a fixed width,
+                    which you can set using the <code>width</code> property on the options.
+                    The width can be set to any valid CSS value for the width property.
+                </p>
+
+                <pre>
+SnackBar({
+    width: "1000px"
+})
+                </pre>
+
+                <p>
+                    <strong>
+                        If you set your width too low, the snackbar will not display correctly.
+                    </strong>
+
+                    For example, setting a width of <code>1rem</code> is far
+                    too small for any text to fit within, and the text will
+                    collapse fully and be hidden.
+
+                    The width must, at minimum, fit a whole word for the
+                    SnackBar to be displayed correct.
+
+                    Use this feature with caution.
+                </p>
+
+                <p>
+                    <button onclick="width_500px()" class="button">500px</button>
+                    <button onclick="width_100vw()" class="button">100vw</button>
+                    <button onclick="width_30rem()" class="button">30rem</button>
+                </p>
+
+                <script>
+                    var width_500px = function() {
+                        SnackBar({
+                            width: "500px",
+                            message: "I'm 500px wide"
+                        })
+                    }
+
+                    var width_100vw = function() {
+                        SnackBar({
+                            width: "100vw",
+                            message: "I'm the width of the viewport",
+                        })
+                    }
+
+                    var width_30rem = function() {
+                        SnackBar({
+                            width: "30rem",
+                            message: "I'm 30 rem"
+                        })
+                    }
+                </script>
+            </article>
 
             <article id="Colors" class="section">
                 <h2 class="section-title">Context Colors</h2>
@@ -217,7 +277,7 @@ Snackbar({
                             <td>
                                 <span class="js-snackbar js-snackbar--show">
                                     <span class="js-snackbar__status"></span>
-                                    <span class="js-snackbar__message">Default</span>
+                                    <span class="js-snackbar__message demo-message">Default</span>
                                 </span>
                             </td>
                         </tr>
@@ -231,7 +291,7 @@ Snackbar({
                             <td>
                                 <span class="js-snackbar js-snackbar--show">
                                     <span class="js-snackbar__status js-snackbar--success"></span>
-                                    <span class="js-snackbar__message">Success</span>
+                                    <span class="js-snackbar__message demo-message">Success</span>
                                 </span>
                             </td>
                         </tr>
@@ -246,7 +306,7 @@ Snackbar({
                             <td>
                                 <span class="js-snackbar js-snackbar--show">
                                     <span class="js-snackbar__status js-snackbar--warning"></span>
-                                    <span class="js-snackbar__message">Warning</span>
+                                    <span class="js-snackbar__message demo-message">Warning</span>
                                 </span>
                             </td>
                         </tr>
@@ -261,7 +321,7 @@ Snackbar({
                             <td>
                                 <span class="js-snackbar js-snackbar--show">
                                     <span class="js-snackbar__status js-snackbar--danger"></span>
-                                    <span class="js-snackbar__message">Danger</span>
+                                    <span class="js-snackbar__message demo-message">Danger</span>
                                 </span>
 
                             </td>
@@ -275,7 +335,7 @@ Snackbar({
                             <td>
                                 <span class="js-snackbar js-snackbar--show">
                                     <span class="js-snackbar__status js-snackbar--info"></span>
-                                    <span class="js-snackbar__message">Info</span>
+                                    <span class="js-snackbar__message demo-message">Info</span>
                                 </span>
                             </td>
                         </tr>
