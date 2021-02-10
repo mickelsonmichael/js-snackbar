@@ -43,10 +43,12 @@
     overflow: hidden;
     height: auto;
     margin: 0;
-    transition: all ease .5s;
     border-radius: 3px;
     display: flex;
     min-width: auto;
+    transition-property: all;
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
 }
 
 .js-snackbar {
