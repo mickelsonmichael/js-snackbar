@@ -248,6 +248,12 @@
                 return "js-snackbar-container--top-left";
             case "tr":
                 return "js-snackbar-container--top-right";
+            case "tc":
+            case "tm":
+                return "js-snackbar-container--top-center";
+            case "bc":
+            case "bm":
+                return "js-snackbar-container--bottom-center";
             default:
                 return "js-snackbar-container--bottom-right";
         }

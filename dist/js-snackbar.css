@@ -17,6 +17,14 @@
     left: 0;
 }
 
+.js-snackbar-container--top-center {
+    top: 0;
+    bottom: unset;
+    left: 50%;
+    right: unset;
+    transform: translateX(-50%);
+}
+
 .js-snackbar-container--top-right {
     bottom: unset;
     right: 0;
@@ -29,6 +37,14 @@
     right: unset;
     left: 0;
     top: unset;
+}
+
+.js-snackbar-container--bottom-center {
+    bottom: 0;
+    right: unset;
+    left: 50%;
+    top: unset;
+    transform: translateX(-50%);
 }
 
 .js-snackbar-container--fixed {
