@@ -58,6 +58,12 @@
                 </li>
 
                 <li class="nav-li">
+                    <a href="#speed" class="nav-a">
+                        Animation Speed
+                    </a>
+                </li>
+
+                <li class="nav-li">
                     <a href="#Positioning" class="nav-a">
                         Positioning
                     </a>
@@ -447,6 +453,47 @@ SnackBar({
                                 dismissible: false
                             })
                         }
+                </script>
+            </article>
+
+            <article id="speed" class="section">
+                <h2 class="section-title">Animation Speed</h2>
+
+                <p>
+                    You may want the SnackBar to come on screen quicker or slower.
+                    To that end, you can specify the <code>speed</code> property to set the <code>transition-duration</code>
+                    for the element.
+                </p>
+
+                <p>
+                    If you send in a <code>number</code>, then it will be applied as milliseconds (e.g. <code>500</code> will become <code>"500ms"</code>).
+                    If you send in a <code>string</code>, then it will be applied directly to the property with no modifications, making the valid
+                    options any valid CSS property for the <code>transformation-duration</code> property.
+                    Sending in any other type of value will result in no change to the animation duration.
+                </p>
+
+                <code block>
+SnackBar({
+    speed: "0.5s"
+});
+
+// OR
+
+SnackBar({
+    speed: 500
+});
+</code>
+
+                <button class="button" onclick="demoSpeed(1000)">1000ms</button>
+                <button class="button" onclick="demoSpeed(250)">250ms</button>
+
+                <script>
+                    var demoSpeed = function (s) {
+                        SnackBar({
+                            message: "I take " + s + "ms to show and hide",
+                            speed: s 
+                        });
+                    }
                 </script>
             </article>
 

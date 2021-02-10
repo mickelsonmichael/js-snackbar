@@ -29,7 +29,8 @@ To customize a Snackbar, pass the function a JS object with any of the following
 | fixed       | `boolean`            | `false`         | `true` indicates a `positioning:fixed;` be added to the container|
 | position    | `string`             | `"br"`          | Possible values are "br", "tr", "tl", or "bl"|
 | container   | `DOMNode` or `string`| `document.body` | If a string is provided, the string is passed to `querySelector` to find the container|
-| width       | `string`             |                 | Any valid CSS value for width |
+| width       | `string`             |                 | Any valid CSS value for `width` |
+| speed       | `string` or `number` |                 | Any valid CSS value for `transition-duration` or a duration in milliseconds |
 
 ### Actions
 
