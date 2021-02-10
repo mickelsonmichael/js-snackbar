@@ -29,7 +29,8 @@
             fixed: userOptions?.fixed ?? false,
             position: userOptions?.position ?? "br",
             container: userOptions?.container ?? document.body,
-            width: userOptions?.width
+            width: userOptions?.width,
+            speed: userOptions?.speed
         };
     }
 
@@ -113,6 +114,7 @@
             outerElement.style.marginBottom = "0px";
 
             setWidth(outerElement);
+            setSpeed(outerElement);
             
             return outerElement;
         }
@@ -222,6 +224,19 @@
 
             element.style.width = _Options.width;
         }
+
+        function setSpeed(element) {
+            const { speed } = _Options;
+
+            switch (typeof speed) {
+                case "number":
+                    element.style.transitionDuration = speed + "ms";
+                    break;
+                case "string":
+                    element.style.transitionDuration = speed;
+                    break;
+            }
+        }
     }
 
     function _getPositionClass() {
@@ -233,6 +248,12 @@
                 return "js-snackbar-container--top-left";
             case "tr":
                 return "js-snackbar-container--top-right";
+            case "tc":
+            case "tm":
+                return "js-snackbar-container--top-center";
+            case "bc":
+            case "bm":
+                return "js-snackbar-container--bottom-center";
             default:
                 return "js-snackbar-container--bottom-right";
         }

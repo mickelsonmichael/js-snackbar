@@ -58,6 +58,12 @@
                 </li>
 
                 <li class="nav-li">
+                    <a href="#speed" class="nav-a">
+                        Animation Speed
+                    </a>
+                </li>
+
+                <li class="nav-li">
                     <a href="#Positioning" class="nav-a">
                         Positioning
                     </a>
@@ -450,6 +456,47 @@ SnackBar({
                 </script>
             </article>
 
+            <article id="speed" class="section">
+                <h2 class="section-title">Animation Speed</h2>
+
+                <p>
+                    You may want the SnackBar to come on screen quicker or slower.
+                    To that end, you can specify the <code>speed</code> property to set the <code>transition-duration</code>
+                    for the element.
+                </p>
+
+                <p>
+                    If you send in a <code>number</code>, then it will be applied as milliseconds (e.g. <code>500</code> will become <code>"500ms"</code>).
+                    If you send in a <code>string</code>, then it will be applied directly to the property with no modifications, making the valid
+                    options any valid CSS property for the <code>transformation-duration</code> property.
+                    Sending in any other type of value will result in no change to the animation duration.
+                </p>
+
+                <code block>
+SnackBar({
+    speed: "0.5s"
+});
+
+// OR
+
+SnackBar({
+    speed: 500
+});
+</code>
+
+                <button class="button" onclick="demoSpeed(1000)">1000ms</button>
+                <button class="button" onclick="demoSpeed(250)">250ms</button>
+
+                <script>
+                    var demoSpeed = function (s) {
+                        SnackBar({
+                            message: "I take " + s + "ms to show and hide",
+                            speed: s 
+                        });
+                    }
+                </script>
+            </article>
+
             <article id="Positioning" class="section">
                 <h2 class="section-title">Positioning</h2>
 
@@ -467,20 +514,28 @@ SnackBar({
                     </thead>
                     <tbody>
                         <tr>
-                            <td><code>"tr"</code></td>
-                            <td>Top-Right</td>
-                        </tr>
-                        <tr>
                             <td><code>"tl"</code></td>
                             <td>Top-Left</td>
                         </tr>
                         <tr>
-                            <td><code>"br"</code></td>
-                            <td>Bottom-Right</td>
+                            <td><code>"tc"</code> or <code>"tm"</code></td>
+                            <td>Top-Center</td>
+                        </tr>
+                        <tr>
+                            <td><code>"tr"</code></td>
+                            <td>Top-Right</td>
                         </tr>
                         <tr>
                             <td><code>"bl"</code></td>
                             <td>Bottom-Left</td>
+                        </tr>
+                        <tr>
+                            <td><code>"bc"</code> or <code>"bm"</code></td>
+                            <td>Bottom-Center</td>
+                        </tr>
+                        <tr>
+                            <td><code>"br"</code></td>
+                            <td>Bottom-Right</td>
                         </tr>
                     </tbody>
                 </table>
@@ -494,17 +549,19 @@ SnackBar({
     position: "br"
 });</code>
 
-                <button type=button class="button" onclick="demoPosition('tl');">Top-Left</button>
-                <button type=button class="button" onclick="demoPosition('tr');">Top-Right</button>
-                <button type=button class="button" onclick="demoPosition('bl');">Bottom-Left</button>
-                <button type=button class="button" onclick="demoPosition('br');">Bottom-Right</button>
+                <button class="button" onclick="demoPosition('tl');">Top-Left</button>
+                <button class="button" onclick="demoPosition('tc')">Top-Center</button>
+                <button class="button" onclick="demoPosition('tr');">Top-Right</button>
+                <button class="button" onclick="demoPosition('bl');">Bottom-Left</button>
+                <button class="button" onclick="demoPosition('bc')">Bottom-Center</button>
+                <button class="button" onclick="demoPosition('br');">Bottom-Right</button>
                 
 
                 <script>
                     var demoPosition = function(pos) {
                         var snack = SnackBar({
                             position: pos,
-                            message: "I should be in the '" + pos + "' corner!"
+                            message: "I should be in the '" + pos + "' position!"
                         });
                     }
                 </script>
@@ -654,10 +711,13 @@ SnackBar({
                     <div class="field">
                         <label>Position</label>
                         <select id="demo_pos">
-                            <option selected value="br">Bottom-Right</option>
+                            <option value="tl">Top-Left</option>
+                            <option value="tc">Top-Center</option>
                             <option value="tr">Top-Right</option>
                             <option value="bl">Bottom-Left</option>
-                            <option value="tl">Top-Left</option>
+                            <option value="bc">Bottom-Center</option>
+                            <option selected value="br">Bottom-Right (Default)</option>
+
                         </select>
                     </div>
 
