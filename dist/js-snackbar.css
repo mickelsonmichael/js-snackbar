@@ -97,7 +97,7 @@
 
 .js-snackbar__status {
     display: none;
-    width: 15px;
+    min-width: 15px;
     margin-right: 5px;
     border-radius: 3px 0 0 3px;
     background-color: transparent;
@@ -107,7 +107,9 @@
  .js-snackbar__status.js-snackbar--warning,
  .js-snackbar__status.js-snackbar--danger,
  .js-snackbar__status.js-snackbar--info {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .js-snackbar__status.js-snackbar--success  {
@@ -124,6 +126,18 @@
 
  .js-snackbar__status.js-snackbar--info {
     background-color: #2196f3;
+}
+
+.js-snackbar__icon {
+    display: block;
+    border: 2px solid white;
+    font-weight: bold;
+    border-radius: 20px;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    margin: 0 5px;
+    font-family: monospace;
 }
 
 .js-snackbar__action {

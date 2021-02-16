@@ -30,7 +30,8 @@
             position: userOptions?.position ?? "br",
             container: userOptions?.container ?? document.body,
             width: userOptions?.width,
-            speed: userOptions?.speed
+            speed: userOptions?.speed,
+            icon: userOptions?.icon
         };
     }
 
@@ -123,7 +124,7 @@
             var innerSnack = document.createElement("div");
             innerSnack.classList.add("js-snackbar", "js-snackbar--show");
 
-            applyColorTo(innerSnack);
+            applyColorAndIconTo(innerSnack);
             insertMessageTo(innerSnack);
             addActionsTo(innerSnack);
             addDismissButtonTo(innerSnack);
@@ -131,34 +132,73 @@
             return innerSnack;
         }
 
-        function applyColorTo(element) {
+        function applyColorAndIconTo(element) {
             if (!_Options.status) return;
 
             var status = document.createElement("span");
             status.classList.add("js-snackbar__status");
 
-            switch (_Options.status)
-            {
-                case "success":
-                case "green":
-                    status.classList.add("js-snackbar--success");
-                    break;
-                case "warning":
-                case "alert":
-                case "orange":
-                    status.classList.add("js-snackbar--warning");
-                    break;
-                case "danger":
-                case "error":
-                case "red":
-                    status.classList.add("js-snackbar--danger");
-                    break;
-                default:
-                    status.classList.add("js-snackbar--info");
-                    break;
-            }
+            applyColorTo(status);
+            applyIconTo(status);
 
             element.appendChild(status);
+
+            function applyColorTo(element) {
+                switch (_Options.status)
+                {
+                    case "success":
+                    case "green":
+                        element.classList.add("js-snackbar--success");
+                        break;
+                    case "warning":
+                    case "alert":
+                    case "orange":
+                        element.classList.add("js-snackbar--warning");
+                        break;
+                    case "danger":
+                    case "error":
+                    case "red":
+                        element.classList.add("js-snackbar--danger");
+                        break;
+                    default:
+                        element.classList.add("js-snackbar--info");
+                        break;
+                }
+            }
+
+            function applyIconTo(element) {
+                if (!_Options.icon) return;
+
+                var icon = document.createElement("span");
+                icon.classList.add("js-snackbar__icon");
+
+                switch (_Options.icon)
+                {
+                    case "exclamation":
+                    case "warn":
+                    case "danger":
+                        icon.innerText = "!";
+                        break;
+                    case "info":
+                    case "question":
+                    case "question-mark":
+                        icon.innerText = "?";
+                        break;
+                    case "plus":
+                    case "add":
+                        icon.innerText = "+";
+                        break;
+                    default:
+                        if (_Options.icon.length > 1) {
+                            console.warn("Invalid icon character provided: ", _Options.icon);
+                        }
+
+                        icon.innerText = _Options.icon.substr(0, 1);
+                        break;
+                }
+
+                element.appendChild(icon);
+            }
         }
 
         function insertMessageTo(element) {
