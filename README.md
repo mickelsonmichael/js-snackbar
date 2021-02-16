@@ -31,6 +31,7 @@ To customize a Snackbar, pass the function a JS object with any of the following
 | container   | `DOMNode` or `string`| `document.body` | If a string is provided, the string is passed to `querySelector` to find the container|
 | width       | `string`             |                 | Any valid CSS value for `width` |
 | speed       | `string` or `number` |                 | Any valid CSS value for `transition-duration` or a duration in milliseconds |
+| icon        | `string`             |                 | `"exclamation"`, `"danger"`, `"warn"`, `"question"`, `"question-mark"`, `"info"`, `"add"`, `"plus"`, or any single character. Longer strings will be concatenated |
 
 ### Actions
 
