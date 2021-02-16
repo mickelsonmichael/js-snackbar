@@ -38,17 +38,23 @@
 
             <ul class="nav-ul">
                 <li class="nav-li">
+                    <a href="#message" class="nav-a">Content</a>
+                </li>
+
+                <li class="nav-li">
+                    <a href="#width" class="nav-a">Width</a>
+                </li>
+
+                <li class="nav-li">
                     <a href="#Colors" class="nav-a">
                         Context Colors
                     </a>
                 </li>
 
                 <li class="nav-li">
-                    <a href="#message" class="nav-a">Content</a>
-                </li>
-
-                <li class="nav-li">
-                    <a href="#width" class="nav-a">Width</a>
+                    <a href="#icons" class="nav-a">
+                        Icons
+                    </a>
                 </li>
 
                 <li class="nav-li">
@@ -387,6 +393,148 @@
                         })
                     }
 
+                </script>
+            </article>
+
+            <article id="icons" class="section">
+                <h2 class="section-title">Icons</h2>
+
+                <p>
+                    Icons can add additional flair to your messages, so the SnackBar comes with several built-in.
+                    These icons are simply monospace text, and so can also be customized to any single character.
+                    Keep in mind, however, that monospaces characters are serif fonts in all modern browsers.
+                    If you are looking for more customization, then you'll need to roll some custom CSS to
+                    target the icons.
+                </p>
+
+                <code block>Snackbar({
+    status: "success",
+    icon: "plus"
+})</code>
+
+                <p class="alert">
+                    While the icons and the colors can be mixed and matched, the icons
+                    <strong>require a <a href="#Colors">status color</a> to be set</strong> in order to appear.
+                </p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Icon</td>
+                            <td>Value(s)</td>
+                            <td>Example</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>!</td>
+                            <td>
+                                <code>"exclamation"</code>,
+                                <code>"warn"</code>,
+                                <code>"danger"</code>
+                            </td>
+                            <td>
+                                <span class="js-snackbar js-snackbar--show">
+                                    <span class="js-snackbar__status js-snackbar--danger">
+                                        <span class="js-snackbar__icon">!</span>
+                                    </span>
+                                    <div class="js-snackbar__message-wrapper">
+                                        <span class="js-snackbar__message demo-message">Exclamation</span>
+                                    </div>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>?</td>
+                            <td>
+                                <code>"question"</code>,
+                                <code>"question-mark"</code>,
+                                <code>"info"</code>
+                            </td>
+                            <td>
+                                <span class="js-snackbar js-snackbar--show">
+                                    <span class="js-snackbar__status js-snackbar--warning">
+                                        <span class="js-snackbar__icon">?</span>
+                                    </span>
+                                    <div class="js-snackbar__message-wrapper">
+                                        <span class="js-snackbar__message demo-message">Question</span>
+                                    </div>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>+</td>
+                            <td>
+                                <code>"add"</code>,
+                                <code>"plus"</code>
+                            </td>
+                            <td>
+                                <span class="js-snackbar js-snackbar--show">
+                                    <span class="js-snackbar__status js-snackbar--success">
+                                        <span class="js-snackbar__icon">+</span>
+                                    </span>
+                                    <div class="js-snackbar__message-wrapper">
+                                        <span class="js-snackbar__message demo-message">Plus</span>
+                                    </div>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Custom</td>
+                            <td>
+                                Any character
+                            </td>
+                            <td>
+                                <span class="js-snackbar js-snackbar--show">
+                                    <span class="js-snackbar__status js-snackbar--info">
+                                        <span class="js-snackbar__icon">R</span>
+                                    </span>
+                                    <div class="js-snackbar__message-wrapper">
+                                        <span class="js-snackbar__message demo-message">Custom</span>
+                                    </div>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button class="button" onclick="icons_exclamation()">!</button>
+                <button class="button" onclick="icons_question()">?</button>
+                <button class="button" onclick="icons_add()">+</button>
+                <button class="button" onclick="icons_any()">Custom</button>
+
+                <script>
+                    var icons_exclamation = function() {
+                        SnackBar({
+                            message: "How exciting",
+                            icon: "exclamation",
+                            status: "danger",
+                        })
+                    }
+
+                    var icons_question = function() {
+                        SnackBar({
+                            message: "That's questionable",
+                            icon: "question",
+                            status: "warn"
+                        });
+                    }
+
+                    var icons_add = function() {
+                        SnackBar({
+                            message: "You've added it successfully",
+                            icon: "add",
+                            status: "success"
+                        })
+                    }
+
+                    var icons_any = function() {
+                        SnackBar({
+                            message: "My name is Mike",
+                            icon: "M",
+                            status: "info"
+                        })
+                    }
                 </script>
             </article>
 
