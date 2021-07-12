@@ -65,7 +65,7 @@
         }
 
         function createNewContainer(target) {
-            container = document.createElement("div");
+            var container = document.createElement("div");
             container.classList.add("js-snackbar-container");
 
             if(_Options.fixed) {
