@@ -808,23 +808,35 @@ SnackBar({
                 </p>
 
                 <p>
+                    The <code>container</code> property can accept any string that the <code>document.querySelector</code> method can,
+                    including classes and IDs. See <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector" target="_blank" rel="noreferrer" rel="noopener">MDN</a> for more details.
+                </p>
+
+                <p>
                     <em>Note: This requires the containing element to have a non-static position (e.g. <code>position: relative;</code>)</em>
                 </p>
 
+                <code block>&lt;div id="container"&gt;&lt;/div&gt;
+
+SnackBar({
+    message: "I'm inside this box",
+    container: "#container"
+})
+</code>
+
                 <button type="button" class="button" onclick="demoContainer();">Within the Box</button>
 
-                <div id="container" class="box">
-
-                </div>
+                <div id="container" class="box"></div>
 
                 <script>
                     var demoContainer = function () {
                         SnackBar({
                             message: "I'm inside this box",
-                            container: "container"
+                            container: "#container"
                         })
                     }
                 </script>
+
             </article>
 
             <article id="tryit" class="section">
@@ -906,7 +918,7 @@ SnackBar({
         </section>
     </div>
 
-    <script src="dist/js-snackbar.js?v=1.3"></script>
+    <script src="dist/js-snackbar.js?v=1.4"></script>
     <script src="site.js?v=1.0.0"></script>
 </body>
 

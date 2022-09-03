@@ -77,9 +77,9 @@
         }
 
         function getOrFindContainer() {
-            return typeof _Options.container === "object"
-                ? _Options.container
-                : document.getElementById(_Options.container);
+            return typeof _Options.container === "string"
+                ? document.querySelector(_Options.container)
+                : _Options.container;
         }
     }
 
@@ -349,4 +349,9 @@
 
     _create();
     _This.Open();
+}
+
+if (typeof module !== "undefined")
+{
+    module.exports = SnackBar;
 }
