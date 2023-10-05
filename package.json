@@ -38,7 +38,7 @@
     "jest": "^29.0.2",
     "jest-environment-jsdom": "^29.0.2",
     "ncp": "^2.0.0",
-    "postcss": "^8.2.13",
+    "postcss": "^8.4.31",
     "postcss-cli": "^8.3.1"
   }
 }
