@@ -23,6 +23,8 @@
         _Options = {
             message: userOptions?.message ?? "Operation performed successfully.",
             dismissible: userOptions?.dismissible ?? true,
+            dismissAction: userOptions?.dismissAction ?? function () {
+            },
             timeout: userOptions?.timeout ?? 5000,
             status: userOptions?.status ? userOptions.status.toLowerCase().trim() : "",
             actions: userOptions?.actions ?? [],
@@ -71,6 +73,8 @@
             if(_Options.fixed) {
                 container.classList.add("js-snackbar-container--fixed");
             }
+
+            container.setAttribute("role", "alert");
 
             target.appendChild(container);
             return container;
@@ -252,6 +256,10 @@
             }
 
             var closeButton = document.createElement("span");
+
+            closeButton.setAttribute("role", "button");
+            closeButton.setAttribute("tabindex", "0");
+            closeButton.setAttribute("aria-label", "Close");
             closeButton.classList.add("js-snackbar__close");
             closeButton.innerText = "\u00D7";
             closeButton.onclick = _This.Close;
@@ -345,6 +353,10 @@
         setTimeout(function() {
             _Container.removeChild(_Element);
         }, 1000);
+
+        if (_Options.dismissAction) {
+            _Options.dismissAction();
+        }
     };
 
     _create();
